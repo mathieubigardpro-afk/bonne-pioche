@@ -1,0 +1,22 @@
+{
+  "name": "Bonne Pioche",
+  "short_name": "Bonne Pioche",
+  "description": "On ne se prive pas. On pioche mieux. Menus de la semaine en mode swipe.",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF3E7",
+  "theme_color": "#C4553B",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
