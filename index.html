@@ -152,6 +152,71 @@ nav button .bdg{
   font-size:19px;font-weight:800;color:var(--prune);cursor:pointer;
 }
 .stepper .val{font-family:var(--font-display);font-weight:900;font-size:22px;min-width:28px;text-align:center;color:var(--prune)}
+/* ---- accueil de la pioche ---- */
+.pioche-setup.home{justify-content:flex-start;gap:0;padding-top:calc(30px + var(--safe-t))}
+.home-date{font-family:var(--font-display);font-weight:900;font-size:15px;color:var(--abricot);text-transform:uppercase;letter-spacing:.03em}
+.home-q{font-family:var(--font-display);font-weight:600;font-size:31px;line-height:1.14;color:var(--encre);margin-top:12px}
+.home-q em{font-style:normal;color:var(--abricot)}
+.home-tiles{display:flex;gap:9px;margin:26px -18px 0;padding:0 18px}
+.home-tile{flex:1;min-width:0;border-radius:24px;padding:13px 11px;position:relative;color:#FCEFE6;
+  box-shadow:0 12px 24px rgba(74,43,56,.14)}
+/* arrivée en cascade : ça vit, mais les boutons ne bougent plus une fois posés */
+.home-date{animation:home-in .5s cubic-bezier(.22,1,.36,1) both}
+.home-q{animation:home-in .55s cubic-bezier(.22,1,.36,1) .06s both}
+.home-tile{animation:home-in .55s cubic-bezier(.22,1,.36,1) .14s both}
+.home-tile:nth-child(2){animation-delay:.22s}
+.home-tile:nth-child(3){animation-delay:.30s}
+.home-mode{animation:home-in .55s cubic-bezier(.22,1,.36,1) .38s both}
+.home-cta{animation:home-in .55s cubic-bezier(.22,1,.36,1) .46s both}
+.home-foot{animation:home-in .5s ease .56s both}
+@keyframes home-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.home-cta{position:relative;overflow:hidden}
+.home-cta::after{content:'';position:absolute;top:0;left:-60%;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.26),transparent);animation:home-shine 4.2s ease-in-out 1.2s infinite}
+@keyframes home-shine{0%{left:-60%}45%{left:130%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){
+  .home-date,.home-q,.home-tile,.home-mode,.home-cta,.home-foot,.home-total{animation:none}
+  .home-mono path{animation:none;stroke-dasharray:none}
+  .home-cta::after{display:none}
+}
+.home-tile.a{background:var(--prune)}
+.home-tile.b{background:var(--abricot);color:#3A2029}
+.home-tile.c{background:var(--olive)}
+.home-tile .ht-ic{position:absolute;right:7px;top:5px;font-size:25px;opacity:.4;line-height:1}
+.home-tile .ht-k{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.93}
+.home-tile .ht-v{font-family:var(--font-display);font-weight:900;font-size:50px;line-height:.95;margin-top:12px}
+.home-tile .ht-s{font-size:10.5px;opacity:.87;margin-top:4px;line-height:1.3;min-height:27px}
+.home-tile .stepper{gap:6px;justify-content:flex-end;margin-top:8px}
+.home-tile .stepper button{width:30px;height:30px;border-radius:10px;background:rgba(255,253,251,.26);color:inherit;font-size:17px}
+.home-tile.b .stepper button{background:rgba(58,32,41,.16)}
+.home-mode{display:flex;gap:8px;background:var(--blanc);border-radius:22px;padding:10px;margin-top:auto;box-shadow:var(--sh-soft)}
+.home-mode button{flex:1;min-width:0;border:none;border-radius:16px;height:64px;background:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  font-family:inherit;font-size:12.5px;font-weight:700;color:var(--rose);padding:0 4px;line-height:1.2}
+.home-mode button.on{background:var(--creme2);color:var(--prune)}
+.home-av{display:flex}
+.home-av i{width:23px;height:23px;border-radius:50%;font-size:10.5px;color:#FCEFE6;display:flex;
+  align-items:center;justify-content:center;font-weight:800;font-family:var(--font-display);font-style:normal}
+.home-av i.p1{background:var(--prune)}
+.home-av i.p2{background:var(--abricot);color:#3A2029;margin-left:-6px}
+.home-av.apart i.p2{margin-left:5px;opacity:.5}
+.home-mid{flex:1;min-height:70px;position:relative;display:flex;align-items:center;justify-content:center;margin-top:6px}
+.home-mono{position:absolute;width:250px;height:250px;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.15}
+.home-mono path{stroke-dasharray:520;animation:home-draw 2.4s cubic-bezier(.4,0,.2,1) .5s both}
+@keyframes home-draw{from{stroke-dashoffset:520}to{stroke-dashoffset:0}}
+.home-total{position:relative;text-align:center;animation:home-in .6s cubic-bezier(.22,1,.36,1) .34s both}
+.home-total b{display:block;font-family:var(--font-display);font-weight:900;font-size:56px;line-height:1;color:var(--prune)}
+.home-total span{display:block;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-top:7px}
+.home-cta{margin-top:16px}
+.home-foot{text-align:center;font-size:11.5px;color:var(--rose);line-height:1.5;margin-top:12px}
+@media (max-height:740px){
+  .home-q{font-size:27px}
+  .home-total b{font-size:44px}
+  .home-mid{min-height:40px}
+  .home-tile .ht-v{font-size:42px}
+  .home-mode button{height:56px}
+  .home-cta{margin-top:14px}
+}
 /* deck */
 .deck-wrap{position:absolute;inset:0;display:flex;flex-direction:column;padding:calc(44px + var(--safe-t)) 16px 0 40px}
 .deck-head{display:flex;align-items:center;gap:8px;padding:0 2px 8px;z-index:6}
@@ -762,38 +827,76 @@ function renderPioche() {
   renderDeck(page);
 }
 
+/* ---------- accueil de la pioche ---------- */
+function todayLine() {
+  const d = new Date();
+  return (JOURS_ABR[(d.getDay() + 6) % 7] + " " + d.getDate() + " " + MOIS[d.getMonth()]);
+}
+function homeInitials() {
+  const n = store.get("bp_names", null) || {};
+  const rn = S.rnames || {};
+  const pick = (k, dflt) => {
+    const v = (rn[k] && rn[k].nom) || n[k] || dflt;
+    return String(v).trim().charAt(0).toUpperCase() || dflt;
+  };
+  return { a: pick("p1", "M"), b: pick("p2", "L") };
+}
+function avatarsHTML(together) {
+  const i = homeInitials();
+  return `<span class="home-av${together ? "" : " apart"}"><i class="p1">${esc(i.a)}</i><i class="p2">${esc(i.b)}</i></span>`;
+}
+const HOME_TILES = [
+  { cat: "diner", cls: "a", emoji: "🍲", titre: "Dîners", sous: "cuisinés ×2, relunchés" },
+  { cat: "petitdej", cls: "b", emoji: "🍳", titre: "Matins", sous: "la rotation" },
+  { cat: "collation", cls: "c", emoji: "🥜", titre: "En-cas", sous: "autour du sport" }
+];
+function midHTML(t) {
+  const trait = (typeof TRAITS !== "undefined" && (TRAITS.cocotte || TRAITS.bol)) || "";
+  const total = (t.diner || 0) + (t.petitdej || 0) + (t.collation || 0);
+  return `<div class="home-mid">
+    ${trait ? `<svg class="mono home-mono" viewBox="0 0 100 100" aria-hidden="true"><path d="${trait}"/></svg>` : ""}
+    <div class="home-total"><b id="home-total-v">${total}</b><span>repas à trouver, à deux</span></div>
+  </div>`;
+}
+function tilesHTML(t) {
+  return `<div class="home-tiles">${HOME_TILES.map(x => `
+    <div class="home-tile ${x.cls}">
+      <span class="ht-ic">${x.emoji}</span>
+      <div class="ht-k">${x.titre}</div>
+      <div class="ht-v" id="t-${x.cat}">${t[x.cat]}</div>
+      <div class="ht-s">${x.sous}</div>
+      <div class="stepper">
+        <button data-t="${x.cat}" data-d="-1" aria-label="moins">−</button>
+        <button data-t="${x.cat}" data-d="1" aria-label="plus">+</button>
+      </div>
+    </div>`).join("")}</div>`;
+}
+
 function renderPiocheSetup(page) {
   const t = S.sessionTargets || { diner: 7, petitdej: 4, collation: 4 };
   let mode = S.pendingMode || store.get("bp_mode", "ensemble");
   if (mode === "duo") { mode = "ensemble"; S.pendingMode = "ensemble"; store.set("bp_mode", "ensemble"); }
   const names = store.get("bp_names", { p1: "Mathieu", p2: "Ma moitié" });
   page.innerHTML = `
-  <div class="pioche-setup">
-    <div class="hero-card">
-      <div class="hero-emoji">🃏</div>
-      <h1>La pioche de la semaine</h1>
-      <p>${mode === "duo"
-        ? "Chacun swipe de son côté sur les mêmes cartes. Seuls les plats likés par les deux font match et entrent au menu — et on repioche tant qu'il en manque."
-        : "Installez-vous à deux. Une carte apparaît, vous tranchez ensemble : à droite si ça vous fait envie, à gauche sinon. Touchez la carte pour voir la recette complète."}</p>
+  <div class="pioche-setup home">
+    <div class="home-date">${todayLine()}</div>
+    <h1 class="home-q">On met vos envies<br>en commun, et on <em>tranche</em>.</h1>
+    ${tilesHTML(t)}
+    ${midHTML(t)}
+    <div class="home-mode">
+      <button data-mode="ensemble" class="on">${avatarsHTML(true)}Sur le même canapé</button>
+      <button data-mode="remote">${avatarsHTML(false)}Chacun son téléphone</button>
     </div>
-    <div style="display:flex; gap:6px">
-      <button class="btn btn-sm ${mode === "ensemble" ? "btn-primary" : "btn-ghost"}" style="flex:1" data-mode="ensemble">Ensemble</button>
-      <button class="btn btn-sm btn-ghost" style="flex:1" data-mode="remote">À distance</button>
-    </div>
-
-    <div class="stepper-row"><div class="lbl">Dîners batch<small>cuisinés le soir ×2 → lunch du lendemain</small></div>
-      <div class="stepper"><button data-t="diner" data-d="-1">−</button><span class="val" id="t-diner">${t.diner}</span><button data-t="diner" data-d="1">+</button></div></div>
-    <div class="stepper-row"><div class="lbl">Petits-déjeuners<small>la rotation de la semaine</small></div>
-      <div class="stepper"><button data-t="petitdej" data-d="-1">−</button><span class="val" id="t-petitdej">${t.petitdej}</span><button data-t="petitdej" data-d="1">+</button></div></div>
-    <div class="stepper-row"><div class="lbl">Collations<small>avant / après entraînement</small></div>
-      <div class="stepper"><button data-t="collation" data-d="-1">−</button><span class="val" id="t-collation">${t.collation}</span><button data-t="collation" data-d="1">+</button></div></div>
-    <button class="btn btn-primary btn-block" id="start-pioche">C'est parti, on pioche</button>
-    ${S.week ? '<div class="sub" style="text-align:center">Repartir de zéro remplacera le menu actuel une fois la pioche validée.</div>' : ""}
+    <button class="btn btn-primary btn-block home-cta" id="start-pioche">C'est parti</button>
+    <div class="home-foot">${S.week
+      ? "Une nouvelle sélection remplacera le menu actuel une fois validée."
+      : "Une quinzaine de minutes à deux, et la semaine est réglée — menu, courses et batchs compris."}</div>
   </div>`;
   S.sessionTargets = t;
   page.querySelectorAll(".stepper button").forEach(b => b.addEventListener("click", () => {
     const k = b.dataset.t; t[k] = Math.max(0, Math.min(7, t[k] + parseInt(b.dataset.d)));
     $("#t-" + k).textContent = t[k];
+    const tot = $("#home-total-v"); if (tot) tot.textContent = t.diner + t.petitdej + t.collation;
   }));
   page.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => {
     if (b.dataset.mode === "remote" && !remoteOn()) { toast("Configure d'abord le foyer dans ⚙️ Réglages"); openSettings(); return; }
@@ -1775,24 +1878,24 @@ function renderRemotePioche(page) {
     const t = S.sessionTargets || { diner: 7, petitdej: 4, collation: 4 };
     S.sessionTargets = t;
     page.innerHTML = `
-    <div class="pioche-setup">
-      <div class="hero-card">
-        <h1>Pioche à distance</h1>
-        <p>Chacun swipe sur son téléphone, quand il veut. Les plats likés par vous deux font match — et tout le foyer (menu, courses, favoris) reste synchronisé.</p>
+    <div class="pioche-setup home">
+      <div class="home-date">${todayLine()}</div>
+      <h1 class="home-q">Chacun ses envies,<br>de son côté. On <em>recoupe</em>.</h1>
+      ${tilesHTML(t)}
+      ${midHTML(t)}
+      <div class="home-mode">
+        <button id="back-modes">${avatarsHTML(true)}Sur le même canapé</button>
+        <button class="on">${avatarsHTML(false)}Chacun son téléphone</button>
       </div>
-      ${ses && ses.validated ? '<div class="sub" style="text-align:center">Le menu de la semaine est déjà validé — relancer une pioche le remplacera.</div>' : ""}
-      <div class="stepper-row"><div class="lbl">Dîners batch</div>
-        <div class="stepper"><button data-t="diner" data-d="-1">−</button><span class="val" id="t-diner">${t.diner}</span><button data-t="diner" data-d="1">+</button></div></div>
-      <div class="stepper-row"><div class="lbl">Petits-déjeuners</div>
-        <div class="stepper"><button data-t="petitdej" data-d="-1">−</button><span class="val" id="t-petitdej">${t.petitdej}</span><button data-t="petitdej" data-d="1">+</button></div></div>
-      <div class="stepper-row"><div class="lbl">Collations</div>
-        <div class="stepper"><button data-t="collation" data-d="-1">−</button><span class="val" id="t-collation">${t.collation}</span><button data-t="collation" data-d="1">+</button></div></div>
-      <button class="btn btn-primary btn-block" id="start-remote">Lancer la pioche du foyer</button>
-      <button class="btn btn-ghost btn-block" id="back-modes">← Autres modes de pioche</button>
+      <button class="btn btn-primary btn-block home-cta" id="start-remote">C'est parti</button>
+      <div class="home-foot">${ses && ses.validated
+        ? "Le menu de la semaine est déjà validé — en relancer une le remplacera."
+        : "Vous swipez quand vous voulez, chacun de votre côté. Les plats qui vous plaisent à tous les deux entrent au menu."}</div>
     </div>`;
     page.querySelectorAll(".stepper button").forEach(b => b.addEventListener("click", () => {
       const k = b.dataset.t; t[k] = Math.max(0, Math.min(7, t[k] + parseInt(b.dataset.d)));
       $("#t-" + k).textContent = t[k];
+      const tot = $("#home-total-v"); if (tot) tot.textContent = t.diner + t.petitdej + t.collation;
     }));
     $("#start-remote").addEventListener("click", async () => {
       if ((t.diner + t.petitdej + t.collation) <= 0) { toast("Choisissez au moins une recette"); return; }
