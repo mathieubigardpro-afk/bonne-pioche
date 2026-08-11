@@ -30,6 +30,7 @@
   --font-body:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --safe-t:env(safe-area-inset-top);
   --safe-b:env(safe-area-inset-bottom);
+  --nav-h:calc(56px + 16px + env(safe-area-inset-bottom));
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -72,8 +73,8 @@ main{flex:1; position:relative; overflow:hidden; z-index:1}
 .page{display:none; position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch}
 .page.active{display:block}
 .page.nuit{background:radial-gradient(120% 90% at 50% 30%, #55333F 0%, #4A2B38 45%, #38202A 100%)}
-.pad{padding:calc(52px + var(--safe-t)) 22px 116px 84px}
-.pad.center{padding-left:22px}
+.pad{padding:calc(50px + var(--safe-t)) 18px calc(var(--nav-h) + 26px)}
+
 .caps{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:600}
 .nuit .caps{color:#B98D97}
 h2.section{font-family:var(--font-display); font-weight:600; font-size:21px; margin:12px 0 10px; color:var(--encre)}
@@ -129,7 +130,7 @@ nav button .bdg{
 .cut::before{left:-11px}.cut::after{right:-11px}
 /* ================= PIOCHE ================= */
 #pioche-page.deck-mode{overflow:hidden}
-.pioche-setup{padding:calc(56px + var(--safe-t)) 24px 96px;display:flex;flex-direction:column;gap:12px;min-height:100%;justify-content:center}
+.pioche-setup{padding:calc(54px + var(--safe-t)) 18px calc(var(--nav-h) + 20px);display:flex;flex-direction:column;gap:12px;min-height:100%;justify-content:center}
 .hero-card{
   background:linear-gradient(150deg,#7D4453 0%,#96566A 65%,#B06B78 130%);
   border-radius:var(--r-lg);padding:24px 22px;color:#FCEFE6;box-shadow:0 22px 44px rgba(125,68,83,.34);
@@ -152,8 +153,13 @@ nav button .bdg{
 }
 .stepper .val{font-family:var(--font-display);font-weight:900;font-size:19px;min-width:24px;text-align:center;color:var(--prune)}
 /* deck */
-.deck-wrap{position:absolute;inset:0;display:flex;flex-direction:column;padding:calc(46px + var(--safe-t)) 22px 0 58px}
-.deck-head{display:flex;align-items:center;justify-content:space-between;padding:0 2px 8px;z-index:6}
+.deck-wrap{position:absolute;inset:0;display:flex;flex-direction:column;padding:calc(44px + var(--safe-t)) 16px 0 40px}
+.deck-head{display:flex;align-items:center;gap:8px;padding:0 2px 8px;z-index:6}
+.deck-head .dh-mid{flex:1;display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+.deck-back{width:30px;height:30px;flex-shrink:0;border:none;border-radius:11px;background:var(--blanc);
+  color:var(--prune);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-soft)}
+.deck-back svg{width:15px;height:15px}
+.deck-head .phase-lbl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .deck-head .phase-lbl{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--encre)}
 .deck-head .count{font-weight:800;font-size:11px;color:var(--prune);background:rgba(125,68,83,.10);padding:4px 10px;border-radius:20px}
 .progress-dots{display:flex;gap:5px;padding:0 2px 10px;z-index:6}
@@ -175,7 +181,7 @@ nav button .bdg{
 .chev{position:absolute;top:47%;font-size:21px;color:#D9AEB8;font-weight:700;pointer-events:none}
 .chev.l{left:8px}.chev.r{right:8px}
 .card-visu{display:flex;align-items:center;justify-content:center;flex-shrink:0;margin:2px 0 6px}
-.card-visu .picto{width:42%;max-width:150px;filter:drop-shadow(0 16px 24px rgba(125,68,83,.28));transform:rotate(-5deg)}
+.card-visu .pastille .picto{filter:drop-shadow(0 10px 16px rgba(125,68,83,.22));transform:rotate(-5deg)}
 .univers-tag{display:block;text-align:center}
 .fav-tag{position:absolute;top:14px;right:16px;font-size:10px;font-weight:700;color:var(--tomate);z-index:3}
 .card-body{display:flex;flex-direction:column;flex:1;min-height:0;text-align:center}
@@ -187,7 +193,7 @@ nav button .bdg{
 .macro-strip .v{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--prune)}
 .macro-strip .k{font-size:8px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.14em;margin-top:2px}
 .meta-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:11px}
-.card-plate{margin-top:auto;text-align:center}
+.card-plate{margin-top:16px;text-align:center}
 .card-plate .pl{font-family:var(--font-display);font-style:italic;font-size:12px;line-height:1.6;color:var(--encre-2);max-width:250px;margin:6px auto 0}
 .card-foot{margin-top:auto;text-align:center;padding-top:10px;border-top:1px solid rgba(125,68,83,.10)}
 .card-foot .caps{font-size:8px;color:var(--rose-l)}
@@ -199,9 +205,9 @@ nav button .bdg{
 .stamp.like{left:16px;color:var(--olive);border-color:var(--olive)}
 .stamp.nope{right:16px;color:var(--tomate);border-color:var(--tomate);transform:rotate(13deg)}
 .stamp.super{left:50%;top:38%;transform:translateX(-50%) rotate(-6deg);color:#B8791A;border-color:var(--abricot)}
-.hint{text-align:center;padding:11px 0 8px;z-index:6}
+.hint{text-align:center;padding:10px 0 6px;z-index:6}
 .hint b{color:var(--prune)}
-.deck-actions{display:flex;align-items:center;justify-content:center;gap:13px;padding:0 0 84px;z-index:6}
+.deck-actions{display:flex;align-items:center;justify-content:center;gap:13px;padding:0 0 calc(var(--nav-h) + 12px);z-index:6}
 .act-btn{
   width:44px;height:44px;border-radius:15px;border:none;cursor:pointer;
   display:flex;align-items:center;justify-content:center;background:var(--blanc);
@@ -218,11 +224,11 @@ nav button .bdg{
 .recap-list{display:flex;flex-direction:column;gap:8px;margin:10px 0 16px}
 /* ---------- Lignes recette ---------- */
 .r-row{
-  display:flex;align-items:center;gap:11px;background:var(--blanc);border-radius:var(--r-md);
+  display:flex;align-items:center;gap:11px;overflow:hidden;background:var(--blanc);border-radius:var(--r-md);
   padding:9px 13px;box-shadow:var(--sh-soft);cursor:pointer;position:relative;
 }
-.r-row .thumb{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:none!important}
-.r-row .thumb .picto{width:100%}
+.r-row .thumb{width:42px;height:42px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
 .r-row .tt{flex:1;min-width:0}
 .r-row .tt h4{font-family:var(--font-display);font-weight:600;font-size:12.5px;line-height:1.25;margin-bottom:2px;color:var(--encre)}
 .r-row .tt .mm{font-size:9.5px;color:var(--rose);font-weight:600;display:flex;gap:8px;flex-wrap:wrap}
@@ -246,7 +252,7 @@ nav button .bdg{
 }
 .cell .dnum{font-family:var(--font-display);font-weight:900;font-size:19px;color:var(--encre);line-height:1}
 .cell .dw{font-size:7.5px;letter-spacing:.16em;color:var(--rose);font-weight:700;text-transform:uppercase;margin-top:2px}
-.cell .picto{width:42px;align-self:center;margin:5px 0 4px}
+
 .cell .dish{font-size:9.5px;font-weight:700;color:var(--encre);line-height:1.3;text-align:center;
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .cell .lun{font-size:7.5px;color:var(--rose);font-weight:600;text-align:center;margin-top:3px}
@@ -270,8 +276,8 @@ nav button .bdg{
 /* rétrocompat semaine */
 .day-block,.day-lbl,.rot-grid{display:block}
 /* ================= COURSES — ticket de caisse ================= */
-.receipt{background:var(--blanc);border-radius:var(--r-md);box-shadow:var(--sh-mid);padding:15px 19px;margin-top:10px}
-.receipt .cut{margin:11px -19px}
+.receipt{background:var(--blanc);border-radius:var(--r-md);box-shadow:var(--sh-mid);padding:15px 17px;margin-top:10px}
+.receipt .cut{margin:11px -17px}
 .rayon-block{margin:0}
 .rayon-title{
   font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--prune);
@@ -322,7 +328,7 @@ nav button .bdg{
 .modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .modal-body h3{font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.15;color:var(--encre);max-width:250px}
 .modal-body .accroche{font-family:var(--font-display);font-style:italic;font-size:12.5px;color:var(--encre-2);line-height:1.5;margin-top:7px;max-width:245px}
-.modal-picto{width:88px;flex-shrink:0;filter:drop-shadow(0 12px 20px rgba(125,68,83,.26));transform:rotate(6deg)}
+.modal-picto{width:72%;filter:drop-shadow(0 8px 14px rgba(125,68,83,.22));transform:rotate(6deg)}
 .modal-close{
   position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:50%;border:none;
   background:var(--creme2);font-size:14px;cursor:pointer;color:var(--prune);font-weight:700;z-index:5;
@@ -351,7 +357,7 @@ h4.mh{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--r
   transform:rotate(-9deg);opacity:.85;pointer-events:none;
 }
 /* ================= MATCH / DUO ================= */
-.match-wrap{position:relative;min-height:100%;padding:calc(60px + var(--safe-t)) 24px 116px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.match-wrap{position:relative;min-height:100%;padding:calc(58px + var(--safe-t)) 20px calc(var(--nav-h) + 24px);display:flex;flex-direction:column;align-items:center;text-align:center}
 .match-title{font-family:var(--font-display);font-weight:600;font-size:30px;color:#FBEFE8;margin:14px 0 6px}
 .match-cards{display:flex;justify-content:center;margin:14px 0 6px;min-height:150px}
 .mc{width:124px;background:var(--blanc);border-radius:16px;box-shadow:0 20px 44px rgba(30,15,22,.5);padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:5px}
@@ -383,6 +389,26 @@ nav button.active svg{animation:popIc .3s ease}
 .confetti{position:absolute;top:0;z-index:80;pointer-events:none;font-size:20px;animation:confFall 2.4s ease-in forwards}
 @keyframes rowIn{from{transform:translateY(8px);opacity:0} to{transform:none;opacity:1}}
 .recap-list .r-row,.wall .cell{animation:rowIn .3s ease both}
+
+/* ---------- Couleur : pastilles, bandeaux ---------- */
+.pastille{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+.pastille .picto{width:76%}
+.pastille.big{width:150px;height:150px;box-shadow:0 14px 28px rgba(125,68,83,.16)}
+.pastille.big .picto{width:66%}
+.pastille.mid{width:86px;height:86px}
+.card-band{position:absolute;top:0;left:0;right:0;height:6px;z-index:3}
+.modal-band{position:absolute;top:0;left:0;right:0;height:6px;border-radius:26px 26px 0 0}
+.r-row .thumb{border-radius:50%}
+.r-row .thumb .picto{width:74%}
+.r-row::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3.5px;border-radius:0 3px 3px 0;background:var(--uc,transparent);opacity:.85}
+.r-row.fav-card::before{left:14px;right:14px;top:0;bottom:auto;height:3.5px;width:auto;border-radius:0 0 3px 3px}
+.cell .pastille{width:46px;height:46px;align-self:center;margin:5px 0 4px}
+.cell::before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:4px;border-radius:0 3px 3px 0;background:var(--uc,transparent);opacity:.9}
+.cell.libre::before{display:none}
+.cell.rotcell .pastille{width:22px;height:22px;margin:0}
+.rayon-title .rdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:middle}
+.rayon-title .rname{display:flex;align-items:center}
+.macro-strip .k,.macro-grid .k{color:var(--rose)}
 /* ---------- Toast ---------- */
 #toast{
   position:absolute;bottom:92px;left:50%;transform:translateX(-50%) translateY(16px);
@@ -434,6 +460,7 @@ const ICONMAP = {"med-01":"salmon","med-02":"chicken","med-03":"stew","med-04":"
 const PICTOS = {"light":{"fish":"<g transform='rotate(-6 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M18 52 q16 -20 42 -16 q10 2 16 10 q-8 12 -22 14 q-22 4 -36 -8 Z' fill='#6E3B4C' stroke='none'/>\n<path d='M76 46 l14 -10 q2 12 -2 20 l-12 -6' fill='#6E3B4C' stroke='none'/>\n<circle cx='30' cy='47' r='3.4' fill='#FCEFE6' stroke='none'/>\n<path d='M40 44 q6 8 2 14 M52 42 q6 8 2 14' stroke='#FCEFE6' stroke-width='3.4'/>\n</g>","salmon":"<g transform='rotate(4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 36 q28 -10 56 4 q-4 26 -30 30 q-20 2 -30 -10 q-4 -14 4 -24 Z' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M34 40 q10 10 4 22 M48 37 q10 10 4 22 M62 38 q8 8 4 18' stroke='#FCEFE6' stroke-width='4'/>\n</g>","shrimp":"<g transform='rotate(-4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 30 q34 -8 40 18 q4 24 -24 28 q-16 2 -20 -8 q10 4 18 0 q14 -6 10 -20 q-4 -14 -24 -18 Z' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M42 40 q8 2 8 10 M40 52 q8 2 8 10' stroke='#FCEFE6' stroke-width='3.6'/>\n<path d='M30 30 q-8 -6 -14 -2 M32 34 q-10 0 -12 8'/>\n<circle cx='58' cy='34' r='2.6' fill='#6E3B4C' stroke='none'/>\n</g>","mussel":"<g transform='rotate(3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 26 q22 6 26 34 q2 16 -10 22 q-14 -4 -18 -22 q-4 -22 2 -34 Z' fill='#6E3B4C' stroke='none'/>\n<path d='M36 36 q8 14 8 34' stroke='#FCEFE6' stroke-width='3.4'/>\n<path d='M64 34 q14 8 12 30 q-2 12 -12 16 q-8 -6 -8 -20 q0 -18 8 -26 Z' fill='#E3B878' stroke-width='5'/>\n</g>","squid":"<g transform='rotate(-5 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M50 14 q16 12 10 34 l-20 0 q-6 -22 10 -34 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<circle cx='45' cy='40' r='2.6' fill='#6E3B4C' stroke='none'/>\n<circle cx='55' cy='40' r='2.6' fill='#6E3B4C' stroke='none'/>\n<path d='M38 50 q-4 16 -10 22 M46 52 q-2 16 2 26 M56 52 q4 14 12 20 M50 52 q-6 18 -14 30' />\n</g>","chicken":"<g transform='rotate(-28 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 30 q22 -14 38 2 q14 14 2 30 q-12 14 -30 8 q-14 -6 -14 -20 q0 -12 4 -20 Z' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M36 68 l-10 14' stroke-width='6'/>\n<circle cx='22' cy='86' r='5' fill='#FCEFE6' stroke-width='4'/>\n<circle cx='31' cy='89' r='5' fill='#FCEFE6' stroke-width='4'/>\n<path d='M42 40 q12 -2 18 8' stroke='#FCEFE6' stroke-width='3.6'/>\n</g>","duck":"<g transform='rotate(-2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='56' rx='27' ry='17' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M36 42 q-4 -10 6 -12 q2 6 8 8 M64 42 q4 -10 -6 -12 q-2 6 -8 8' fill='#FCEFE6' stroke-width='4.5'/>\n<path d='M40 54 q10 8 20 0' stroke='#FCEFE6' stroke-width='3.6'/>\n<path d='M20 76 q30 8 60 0' stroke-width='5'/>\n</g>","pork":"<g transform='rotate(3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 40 q26 -14 52 0 q6 14 0 26 q-26 12 -52 0 q-6 -14 0 -26 Z' fill='#C0574A' stroke-width='5.5'/>\n<path d='M32 38 l0 32 M48 33 l0 40 M64 34 l0 38' stroke='#FCEFE6' stroke-width='3.6'/>\n<path d='M24 52 l52 0' stroke='#FCEFE6' stroke-width='3.6'/>\n</g>","beef":"<g transform='rotate(-4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 38 q20 -12 46 -6 q12 4 10 18 q-2 16 -20 20 q-24 4 -36 -8 q-8 -12 0 -24 Z' fill='#C0574A' stroke-width='5.5'/>\n<path d='M30 42 q20 -8 36 -2' stroke='#FCEFE6' stroke-width='4'/>\n<circle cx='52' cy='56' r='5' fill='#FCEFE6' stroke-width='3.6'/>\n</g>","meatball":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='32' cy='60' r='13' fill='#C0574A' stroke-width='5'/>\n<circle cx='58' cy='64' r='11' fill='#C0574A' stroke-width='5'/>\n<circle cx='64' cy='42' r='10' fill='#C0574A' stroke-width='5'/>\n<path d='M30 34 q4 -8 0 -14 M42 32 q4 -8 0 -14' />\n<path d='M26 58 q4 -4 8 0 M54 62 q4 -4 8 0' stroke='#FCEFE6' stroke-width='3.2'/>\n</g>","egg":"<g transform='rotate(-3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 40 q6 -20 24 -22 q20 -2 26 16 q6 20 -10 30 q-18 12 -34 0 q-12 -10 -6 -24 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<circle cx='52' cy='48' r='11' fill='#D98E6F' stroke-width='4.5'/>\n</g>","tofu":"<g transform='rotate(4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 40 l44 -8 l10 14 l-44 10 Z' fill='#FCEFE6' stroke-width='5'/>\n<path d='M24 40 l10 12 l0 18 l-10 -12 Z' fill='#E3B878' stroke-width='5'/>\n<path d='M34 52 l44 -10 l0 16 l-44 12 Z' fill='#FCEFE6' stroke-width='5'/>\n<circle cx='52' cy='58' r='2.4' fill='#8A9B6E' stroke='none'/>\n<circle cx='62' cy='55' r='2.4' fill='#8A9B6E' stroke='none'/>\n</g>","lentils":"<g transform='rotate(-2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 52 q28 8 56 0 q-2 18 -12 24 l-32 0 q-10 -6 -12 -24 Z' fill='#D98E6F' stroke-width='5.5'/>\n<circle cx='38' cy='46' r='4' fill='#C0574A' stroke-width='3'/>\n<circle cx='52' cy='42' r='4' fill='#C0574A' stroke-width='3'/>\n<circle cx='64' cy='47' r='4' fill='#C0574A' stroke-width='3'/>\n<circle cx='46' cy='50' r='4' fill='#E3B878' stroke-width='3'/>\n<circle cx='58' cy='52' r='4' fill='#E3B878' stroke-width='3'/>\n</g>","beans":"<g transform='rotate(-8 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M26 32 q30 -6 46 12 q8 10 2 20 q-30 6 -46 -12 q-8 -10 -2 -20 Z' fill='#8A9B6E' stroke-width='5.5'/>\n<circle cx='38' cy='42' r='5.5' fill='#FCEFE6' stroke-width='4'/>\n<circle cx='52' cy='46' r='5.5' fill='#FCEFE6' stroke-width='4'/>\n<circle cx='64' cy='52' r='5.5' fill='#FCEFE6' stroke-width='4'/>\n</g>","cheese":"<g transform='rotate(-4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 62 l52 -30 q12 8 12 22 l-2 12 q-32 8 -62 0 Z' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='46' cy='54' r='4.6' fill='#FCEFE6' stroke-width='3.4'/>\n<circle cx='62' cy='48' r='3.6' fill='#FCEFE6' stroke-width='3.4'/>\n<circle cx='58' cy='60' r='3' fill='#FCEFE6' stroke-width='3'/>\n</g>","bowl":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 48 q30 8 60 0 q-2 22 -16 28 l-28 0 q-14 -6 -16 -28 Z' fill='#6E3B4C' stroke='none'/>\n<path d='M28 44 q10 -12 22 -6 q4 -10 16 -6 q10 2 8 12' fill='#FCEFE6' stroke-width='5'/>\n<path d='M64 24 l16 -12 M72 30 l14 -8'/>\n</g>","curry":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M18 50 q32 10 64 0 q-2 20 -16 26 l-32 0 q-14 -6 -16 -26 Z' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M26 46 q8 -6 14 0 q8 -8 16 0 q8 -6 16 0' stroke='#6E3B4C' stroke-width='4.5'/>\n<path d='M42 28 q-4 -8 2 -14 M56 30 q-4 -8 2 -14'/>\n</g>","soup":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='46' rx='30' ry='8' fill='#FCEFE6' stroke-width='5'/>\n<path d='M20 46 q2 22 14 28 l32 0 q12 -6 14 -28' fill='#6E3B4C' stroke='none'/>\n<path d='M64 40 q14 -10 20 -22' />\n<path d='M40 30 q-4 -8 2 -12'/>\n</g>","noodles":"<g transform='rotate(-2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 22 l6 34 M44 20 l2 36 M58 21 l-2 35 M70 24 l-8 32'/>\n<path d='M20 56 q30 10 60 0 q-2 18 -14 24 l-32 0 q-12 -6 -14 -24 Z' fill='#E3B878' stroke-width='5.5'/>\n<path d='M26 16 l52 8' stroke-width='5.5'/>\n</g>","rice":"<g transform='rotate(2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 52 q30 8 60 0 q-2 20 -16 26 l-28 0 q-14 -6 -16 -26 Z' fill='#6E3B4C' stroke='none'/>\n<path d='M30 48 q0 -14 20 -14 q20 0 20 14' fill='#FCEFE6' stroke-width='5'/>\n<path d='M42 40 l4 4 M54 38 l-4 5'/>\n</g>","pasta":"<g transform='rotate(6 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M34 26 q-10 22 6 26 q-14 10 -2 22' />\n<path d='M50 24 q-10 22 6 26 q-14 10 -2 22' />\n<path d='M66 26 q-10 22 6 26 q-14 10 -2 22' />\n<path d='M28 78 l48 0' stroke-width='6' stroke='#E3B878'/>\n</g>","grain":"<g transform='rotate(-4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M50 22 l0 56'/>\n<path d='M50 34 q-14 -2 -16 -14 q14 2 16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 34 q14 -2 16 -14 q-14 2 -16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 50 q-14 -2 -16 -14 q14 2 16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 50 q14 -2 16 -14 q-14 2 -16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 66 q-14 -2 -16 -14 q14 2 16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 66 q14 -2 16 -14 q-14 2 -16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n</g>","salad":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 52 q28 8 56 0 q-2 18 -14 24 l-28 0 q-12 -6 -14 -24 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M30 48 q-2 -16 12 -22 q2 12 -4 22 Z' fill='#8A9B6E' stroke-width='4.5'/>\n<path d='M46 46 q4 -18 20 -20 q0 14 -12 22 Z' fill='#8A9B6E' stroke-width='4.5'/>\n<circle cx='60' cy='48' r='4.6' fill='#C0574A' stroke-width='3.4'/>\n</g>","wrap":"<g transform='rotate(-14 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M26 36 q24 -12 48 0 l0 22 q-24 12 -48 0 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M30 40 q8 6 8 16 M74 36 l0 22' />\n<path d='M42 42 q10 -4 20 0 M42 50 q10 -4 20 0' stroke='#8A9B6E' stroke-width='4'/>\n<path d='M42 46 q10 -4 20 0' stroke='#C0574A' stroke-width='4'/>\n</g>","taco":"<g transform='rotate(-3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 66 q0 -34 28 -34 q28 0 28 34 Z' fill='#E3B878' stroke-width='5.5'/>\n<path d='M30 60 q4 -8 10 -4 M46 56 q4 -8 10 -4 M62 58 q4 -8 8 -2' stroke='#8A9B6E' stroke-width='4'/>\n<circle cx='40' cy='48' r='2.6' fill='#C0574A' stroke='none'/>\n<circle cx='56' cy='46' r='2.6' fill='#C0574A' stroke='none'/>\n</g>","sheetpan":"<g transform='rotate(3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='20' y='30' width='60' height='42' rx='7' fill='#6E3B4C' stroke='none'/>\n<rect x='27' y='37' width='46' height='28' rx='4' fill='#FCEFE6' stroke-width='4.5'/>\n<circle cx='38' cy='48' r='4.6' fill='#C0574A' stroke-width='3'/>\n<circle cx='52' cy='54' r='4.6' fill='#8A9B6E' stroke-width='3'/>\n<circle cx='62' cy='45' r='4.6' fill='#D98E6F' stroke-width='3'/>\n<path d='M14 40 l6 0 M80 40 l6 0'/>\n</g>","gratin":"<g transform='rotate(-2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 46 l60 0 q4 14 -4 24 l-52 0 q-8 -10 -4 -24 Z' fill='#C0574A' stroke-width='5.5'/>\n<path d='M26 46 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0' fill='#FCEFE6' stroke-width='4.5'/>\n<path d='M14 52 l-6 2 M86 52 l6 2'/>\n</g>","skewer":"<g transform='rotate(-35 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M50 10 l0 80'/>\n<rect x='38' y='24' width='24' height='14' rx='5' fill='#C0574A' stroke-width='4.5'/>\n<rect x='38' y='44' width='24' height='14' rx='5' fill='#8A9B6E' stroke-width='4.5'/>\n<rect x='38' y='64' width='24' height='14' rx='5' fill='#D98E6F' stroke-width='4.5'/>\n</g>","stew":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 44 l52 0 q6 18 -6 30 l-40 0 q-12 -12 -6 -30 Z' fill='#6E3B4C' stroke='none'/>\n<path d='M30 44 q20 -8 40 0' stroke='#FCEFE6' stroke-width='4'/>\n<ellipse cx='50' cy='38' rx='26' ry='6' fill='#6E3B4C' stroke='none'/>\n<circle cx='50' cy='32' r='4' fill='#E3B878' stroke-width='4'/>\n<path d='M16 52 l-6 2 M84 52 l6 2' />\n<path d='M40 22 q-3 -7 2 -12 M58 22 q-3 -7 2 -12'/>\n</g>","papillote":"<g transform='rotate(-4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M32 38 q18 -10 36 0 q6 10 0 24 q-18 10 -36 0 q-6 -14 0 -24 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M32 38 l-14 -6 l6 12 l-6 10 l14 -4 M68 38 l14 -6 l-6 12 l6 10 l-14 -4' fill='#FCEFE6' stroke-width='5'/>\n<path d='M44 46 q6 -4 12 0' stroke='#8A9B6E' stroke-width='4'/>\n</g>","pancakes":"<g transform='rotate(2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='62' rx='28' ry='9' fill='#E3B878' stroke-width='5'/>\n<ellipse cx='50' cy='52' rx='25' ry='8' fill='#E3B878' stroke-width='5'/>\n<ellipse cx='50' cy='42' rx='22' ry='8' fill='#E3B878' stroke-width='5'/>\n<path d='M36 40 q14 8 28 0 l-4 10 q-10 4 -20 0 Z' fill='#D98E6F' stroke-width='4'/>\n<rect x='44' y='28' width='12' height='9' rx='2' fill='#FCEFE6' stroke-width='4'/>\n</g>","porridge":"<g transform='rotate(-2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 50 q30 10 60 0 q-2 20 -16 26 l-28 0 q-14 -6 -16 -26 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M34 46 q8 -6 16 0 q8 -6 16 0' stroke='#D98E6F' stroke-width='4.5'/>\n<circle cx='44' cy='42' r='2.6' fill='#C0574A' stroke='none'/>\n<circle cx='56' cy='41' r='2.6' fill='#C0574A' stroke='none'/>\n<path d='M70 40 q12 -8 16 -18'/>\n</g>","jar":"<g transform='rotate(3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='32' y='28' width='36' height='52' rx='9' fill='#FCEFE6' stroke-width='5.5'/>\n<rect x='30' y='18' width='40' height='10' rx='4' fill='#6E3B4C' stroke='none'/>\n<path d='M32 58 q18 6 36 0 l0 12 q-4 8 -10 10 l-16 0 q-6 -2 -10 -10 Z' fill='#C0574A' stroke-width='4'/>\n<path d='M32 44 q18 6 36 0' stroke='#D98E6F' stroke-width='4.5'/>\n</g>","toast":"<g transform='rotate(-5 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M26 34 q0 -12 12 -12 q6 -6 14 -4 q10 -4 16 4 q10 2 8 12 l-2 42 q-24 8 -46 0 Z' fill='#E3B878' stroke-width='5.5'/>\n<path d='M34 48 q8 -6 14 0 q8 -6 14 0 l-2 16 q-12 6 -24 0 Z' fill='#8A9B6E' stroke-width='4'/>\n</g>","sandwich":"<g transform='rotate(4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 44 l28 -22 l28 22 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M22 50 l56 0' stroke='#8A9B6E' stroke-width='5'/>\n<path d='M20 56 l60 0' stroke='#C0574A' stroke-width='5'/>\n<path d='M24 62 l26 18 l26 -18 Z' fill='#FCEFE6' stroke-width='5.5'/>\n</g>","muffin":"<g transform='rotate(-3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 52 l40 0 l-6 28 l-28 0 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M36 56 l-2 20 M50 56 l0 20 M64 56 l2 20' stroke-width='3.6'/>\n<path d='M26 52 q-4 -22 24 -22 q28 0 24 22 Z' fill='#D98E6F' stroke-width='5.5'/>\n<circle cx='42' cy='42' r='2.6' fill='#6E3B4C' stroke='none'/>\n<circle cx='56' cy='40' r='2.6' fill='#6E3B4C' stroke='none'/>\n</g>","bar":"<g transform='rotate(-12 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='22' y='38' width='56' height='26' rx='8' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='36' cy='48' r='3' fill='#6E3B4C' stroke='none'/>\n<circle cx='50' cy='54' r='3' fill='#C0574A' stroke='none'/>\n<circle cx='62' cy='46' r='3' fill='#8A9B6E' stroke='none'/>\n<path d='M30 64 q10 4 20 0' stroke-width='3.6'/>\n</g>","energyball":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='34' cy='58' r='14' fill='#D98E6F' stroke-width='5'/>\n<circle cx='62' cy='60' r='12' fill='#C0574A' stroke-width='5'/>\n<circle cx='52' cy='36' r='11' fill='#E3B878' stroke-width='5'/>\n<path d='M28 54 l4 3 M36 62 l4 2 M58 56 l4 3 M48 32 l4 3' stroke-width='3'/>\n</g>","cookie":"<g transform='rotate(6 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='50' cy='52' r='26' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='42' cy='44' r='3.6' fill='#6E3B4C' stroke='none'/>\n<circle cx='58' cy='50' r='3.6' fill='#6E3B4C' stroke='none'/>\n<circle cx='46' cy='62' r='3.6' fill='#6E3B4C' stroke='none'/>\n<path d='M60 64 l6 4' stroke-width='3.4'/>\n</g>","cake":"<g transform='rotate(-3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 44 l44 0 l0 32 l-44 0 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M28 54 l44 0' stroke='#C0574A' stroke-width='4.5'/>\n<path d='M28 66 l44 0' stroke='#D98E6F' stroke-width='4.5'/>\n<path d='M28 44 q11 -8 22 0 q11 -8 22 0' stroke-width='5'/>\n<circle cx='50' cy='30' r='4.6' fill='#C0574A' stroke-width='3.4'/>\n</g>","yogurt":"<g transform='rotate(2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 34 l40 0 l-6 44 q-4 6 -14 6 q-10 0 -14 -6 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M30 34 q20 -8 40 0' stroke-width='5'/>\n<path d='M40 48 q10 -8 20 0 q-4 8 -10 8 q-6 0 -10 -8 Z' fill='#C0574A' stroke-width='4'/>\n<circle cx='44' cy='64' r='2.6' fill='#6E3B4C' stroke='none'/>\n<circle cx='56' cy='64' r='2.6' fill='#6E3B4C' stroke='none'/>\n</g>","smoothie":"<g transform='rotate(-3 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M34 30 l32 0 l-6 48 q-2 6 -10 6 q-8 0 -10 -6 Z' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M34 30 q16 -6 32 0' stroke-width='5'/>\n<path d='M54 26 l10 -16' stroke-width='5'/>\n<path d='M40 44 q10 6 20 0' stroke='#FCEFE6' stroke-width='4'/>\n</g>","fruit":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='36' cy='58' r='13' fill='#C0574A' stroke-width='5'/>\n<circle cx='62' cy='58' r='13' fill='#C0574A' stroke-width='5'/>\n<circle cx='49' cy='38' r='12' fill='#C0574A' stroke-width='5'/>\n<path d='M49 26 q0 -8 8 -10' />\n<path d='M57 22 q10 -2 12 6 q-10 4 -12 -6 Z' fill='#8A9B6E' stroke-width='4'/>\n</g>","nuts":"<g transform='rotate(-6 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 36 q12 -8 18 4 q6 14 -6 22 q-14 4 -18 -8 q-2 -12 6 -18 Z' fill='#D98E6F' stroke-width='5'/>\n<path d='M60 40 q12 -4 16 8 q2 12 -10 16 q-12 2 -14 -10 q0 -10 8 -14 Z' fill='#E3B878' stroke-width='5'/>\n<path d='M36 46 q4 4 2 10 M64 50 q4 4 2 8' stroke-width='3.4'/>\n</g>","dip":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 56 q26 8 52 0 q-2 16 -12 22 l-28 0 q-10 -6 -12 -22 Z' fill='#FCEFE6' stroke-width='5.5'/>\n<path d='M34 52 q8 -8 16 -2 q8 -6 16 2' stroke='#D98E6F' stroke-width='4.5'/>\n<path d='M38 30 l6 20 M52 26 l2 24 M66 30 l-4 20' stroke='#8A9B6E' stroke-width='5'/>\n</g>","crackers":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='22' y='34' width='30' height='30' rx='6' transform='rotate(-8 37 49)' fill='#E3B878' stroke-width='5'/>\n<rect x='50' y='42' width='28' height='28' rx='6' transform='rotate(7 64 56)' fill='#FCEFE6' stroke-width='5'/>\n<circle cx='33' cy='45' r='2' fill='#6E3B4C' stroke='none'/>\n<circle cx='41' cy='53' r='2' fill='#6E3B4C' stroke='none'/>\n<circle cx='60' cy='52' r='2' fill='#6E3B4C' stroke='none'/>\n<circle cx='68' cy='60' r='2' fill='#6E3B4C' stroke='none'/>\n</g>","flatbread":"<g transform='rotate(-4 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='52' rx='30' ry='20' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='40' cy='46' r='3' fill='#D98E6F' stroke-width='3'/>\n<circle cx='56' cy='56' r='3' fill='#D98E6F' stroke-width='3'/>\n<circle cx='58' cy='42' r='2.6' fill='#D98E6F' stroke='none'/>\n<path d='M42 60 q4 -4 8 0' stroke='#8A9B6E' stroke-width='3.6'/>\n</g>","pie":"<g transform='rotate(2 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='56' rx='30' ry='18' fill='#D98E6F' stroke-width='5.5'/>\n<path d='M20 56 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0' fill='#E3B878' stroke-width='4.5'/>\n<path d='M34 44 l12 22 M66 44 l-12 22 M50 42 l0 26' stroke='#FCEFE6' stroke-width='3.8'/>\n<path d='M44 30 q-3 -7 2 -12 M58 30 q-3 -7 2 -12'/>\n</g>","plate":"<g transform='rotate(0 50 50)' stroke='#6E3B4C' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='52' cy='52' r='26' fill='#FCEFE6' stroke-width='5.5'/>\n<circle cx='52' cy='52' r='14' stroke-width='4'/>\n<path d='M18 30 l0 26 M14 30 l0 10 q0 6 4 6 M22 30 l0 10 q0 6 -4 6'/>\n</g>"},"dark":{"fish":"<g transform='rotate(-6 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M18 52 q16 -20 42 -16 q10 2 16 10 q-8 12 -22 14 q-22 4 -36 -8 Z' fill='#F6E4DC' stroke='none'/>\n<path d='M76 46 l14 -10 q2 12 -2 20 l-12 -6' fill='#F6E4DC' stroke='none'/>\n<circle cx='30' cy='47' r='3.4' fill='#4A2B38' stroke='none'/>\n<path d='M40 44 q6 8 2 14 M52 42 q6 8 2 14' stroke='#4A2B38' stroke-width='3.4'/>\n</g>","salmon":"<g transform='rotate(4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 36 q28 -10 56 4 q-4 26 -30 30 q-20 2 -30 -10 q-4 -14 4 -24 Z' fill='#E09A70' stroke-width='5.5'/>\n<path d='M34 40 q10 10 4 22 M48 37 q10 10 4 22 M62 38 q8 8 4 18' stroke='#4A2B38' stroke-width='4'/>\n</g>","shrimp":"<g transform='rotate(-4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 30 q34 -8 40 18 q4 24 -24 28 q-16 2 -20 -8 q10 4 18 0 q14 -6 10 -20 q-4 -14 -24 -18 Z' fill='#E09A70' stroke-width='5.5'/>\n<path d='M42 40 q8 2 8 10 M40 52 q8 2 8 10' stroke='#4A2B38' stroke-width='3.6'/>\n<path d='M30 30 q-8 -6 -14 -2 M32 34 q-10 0 -12 8'/>\n<circle cx='58' cy='34' r='2.6' fill='#F6E4DC' stroke='none'/>\n</g>","mussel":"<g transform='rotate(3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 26 q22 6 26 34 q2 16 -10 22 q-14 -4 -18 -22 q-4 -22 2 -34 Z' fill='#F6E4DC' stroke='none'/>\n<path d='M36 36 q8 14 8 34' stroke='#4A2B38' stroke-width='3.4'/>\n<path d='M64 34 q14 8 12 30 q-2 12 -12 16 q-8 -6 -8 -20 q0 -18 8 -26 Z' fill='#E3B878' stroke-width='5'/>\n</g>","squid":"<g transform='rotate(-5 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M50 14 q16 12 10 34 l-20 0 q-6 -22 10 -34 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<circle cx='45' cy='40' r='2.6' fill='#4A2B38' stroke='none'/>\n<circle cx='55' cy='40' r='2.6' fill='#4A2B38' stroke='none'/>\n<path d='M38 50 q-4 16 -10 22 M46 52 q-2 16 2 26 M56 52 q4 14 12 20 M50 52 q-6 18 -14 30' />\n</g>","chicken":"<g transform='rotate(-28 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 30 q22 -14 38 2 q14 14 2 30 q-12 14 -30 8 q-14 -6 -14 -20 q0 -12 4 -20 Z' fill='#E09A70' stroke-width='5.5'/>\n<path d='M36 68 l-10 14' stroke-width='6'/>\n<circle cx='22' cy='86' r='5' fill='#F6E4DC' stroke-width='4'/>\n<circle cx='31' cy='89' r='5' fill='#F6E4DC' stroke-width='4'/>\n<path d='M42 40 q12 -2 18 8' stroke='#4A2B38' stroke-width='3.6'/>\n</g>","duck":"<g transform='rotate(-2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='56' rx='27' ry='17' fill='#E09A70' stroke-width='5.5'/>\n<path d='M36 42 q-4 -10 6 -12 q2 6 8 8 M64 42 q4 -10 -6 -12 q-2 6 -8 8' fill='#4A2B38' stroke-width='4.5'/>\n<path d='M40 54 q10 8 20 0' stroke='#4A2B38' stroke-width='3.6'/>\n<path d='M20 76 q30 8 60 0' stroke-width='5'/>\n</g>","pork":"<g transform='rotate(3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 40 q26 -14 52 0 q6 14 0 26 q-26 12 -52 0 q-6 -14 0 -26 Z' fill='#D4695C' stroke-width='5.5'/>\n<path d='M32 38 l0 32 M48 33 l0 40 M64 34 l0 38' stroke='#4A2B38' stroke-width='3.6'/>\n<path d='M24 52 l52 0' stroke='#4A2B38' stroke-width='3.6'/>\n</g>","beef":"<g transform='rotate(-4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 38 q20 -12 46 -6 q12 4 10 18 q-2 16 -20 20 q-24 4 -36 -8 q-8 -12 0 -24 Z' fill='#D4695C' stroke-width='5.5'/>\n<path d='M30 42 q20 -8 36 -2' stroke='#4A2B38' stroke-width='4'/>\n<circle cx='52' cy='56' r='5' fill='#4A2B38' stroke-width='3.6'/>\n</g>","meatball":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='32' cy='60' r='13' fill='#D4695C' stroke-width='5'/>\n<circle cx='58' cy='64' r='11' fill='#D4695C' stroke-width='5'/>\n<circle cx='64' cy='42' r='10' fill='#D4695C' stroke-width='5'/>\n<path d='M30 34 q4 -8 0 -14 M42 32 q4 -8 0 -14' />\n<path d='M26 58 q4 -4 8 0 M54 62 q4 -4 8 0' stroke='#4A2B38' stroke-width='3.2'/>\n</g>","egg":"<g transform='rotate(-3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 40 q6 -20 24 -22 q20 -2 26 16 q6 20 -10 30 q-18 12 -34 0 q-12 -10 -6 -24 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<circle cx='52' cy='48' r='11' fill='#E09A70' stroke-width='4.5'/>\n</g>","tofu":"<g transform='rotate(4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 40 l44 -8 l10 14 l-44 10 Z' fill='#F6E4DC' stroke-width='5'/>\n<path d='M24 40 l10 12 l0 18 l-10 -12 Z' fill='#E3B878' stroke-width='5'/>\n<path d='M34 52 l44 -10 l0 16 l-44 12 Z' fill='#F6E4DC' stroke-width='5'/>\n<circle cx='52' cy='58' r='2.4' fill='#9DAF7E' stroke='none'/>\n<circle cx='62' cy='55' r='2.4' fill='#9DAF7E' stroke='none'/>\n</g>","lentils":"<g transform='rotate(-2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 52 q28 8 56 0 q-2 18 -12 24 l-32 0 q-10 -6 -12 -24 Z' fill='#E09A70' stroke-width='5.5'/>\n<circle cx='38' cy='46' r='4' fill='#D4695C' stroke-width='3'/>\n<circle cx='52' cy='42' r='4' fill='#D4695C' stroke-width='3'/>\n<circle cx='64' cy='47' r='4' fill='#D4695C' stroke-width='3'/>\n<circle cx='46' cy='50' r='4' fill='#E3B878' stroke-width='3'/>\n<circle cx='58' cy='52' r='4' fill='#E3B878' stroke-width='3'/>\n</g>","beans":"<g transform='rotate(-8 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M26 32 q30 -6 46 12 q8 10 2 20 q-30 6 -46 -12 q-8 -10 -2 -20 Z' fill='#9DAF7E' stroke-width='5.5'/>\n<circle cx='38' cy='42' r='5.5' fill='#F6E4DC' stroke-width='4'/>\n<circle cx='52' cy='46' r='5.5' fill='#F6E4DC' stroke-width='4'/>\n<circle cx='64' cy='52' r='5.5' fill='#F6E4DC' stroke-width='4'/>\n</g>","cheese":"<g transform='rotate(-4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 62 l52 -30 q12 8 12 22 l-2 12 q-32 8 -62 0 Z' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='46' cy='54' r='4.6' fill='#4A2B38' stroke-width='3.4'/>\n<circle cx='62' cy='48' r='3.6' fill='#4A2B38' stroke-width='3.4'/>\n<circle cx='58' cy='60' r='3' fill='#4A2B38' stroke-width='3'/>\n</g>","bowl":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 48 q30 8 60 0 q-2 22 -16 28 l-28 0 q-14 -6 -16 -28 Z' fill='#4A2B38' stroke='none'/>\n<path d='M28 44 q10 -12 22 -6 q4 -10 16 -6 q10 2 8 12' fill='#F6E4DC' stroke-width='5'/>\n<path d='M64 24 l16 -12 M72 30 l14 -8'/>\n</g>","curry":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M18 50 q32 10 64 0 q-2 20 -16 26 l-32 0 q-14 -6 -16 -26 Z' fill='#E09A70' stroke-width='5.5'/>\n<path d='M26 46 q8 -6 14 0 q8 -8 16 0 q8 -6 16 0' stroke='#F6E4DC' stroke-width='4.5'/>\n<path d='M42 28 q-4 -8 2 -14 M56 30 q-4 -8 2 -14'/>\n</g>","soup":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='46' rx='30' ry='8' fill='#F6E4DC' stroke-width='5'/>\n<path d='M20 46 q2 22 14 28 l32 0 q12 -6 14 -28' fill='#4A2B38' stroke='none'/>\n<path d='M64 40 q14 -10 20 -22' />\n<path d='M40 30 q-4 -8 2 -12'/>\n</g>","noodles":"<g transform='rotate(-2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 22 l6 34 M44 20 l2 36 M58 21 l-2 35 M70 24 l-8 32'/>\n<path d='M20 56 q30 10 60 0 q-2 18 -14 24 l-32 0 q-12 -6 -14 -24 Z' fill='#E3B878' stroke-width='5.5'/>\n<path d='M26 16 l52 8' stroke-width='5.5'/>\n</g>","rice":"<g transform='rotate(2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 52 q30 8 60 0 q-2 20 -16 26 l-28 0 q-14 -6 -16 -26 Z' fill='#4A2B38' stroke='none'/>\n<path d='M30 48 q0 -14 20 -14 q20 0 20 14' fill='#F6E4DC' stroke-width='5'/>\n<path d='M42 40 l4 4 M54 38 l-4 5'/>\n</g>","pasta":"<g transform='rotate(6 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M34 26 q-10 22 6 26 q-14 10 -2 22' />\n<path d='M50 24 q-10 22 6 26 q-14 10 -2 22' />\n<path d='M66 26 q-10 22 6 26 q-14 10 -2 22' />\n<path d='M28 78 l48 0' stroke-width='6' stroke='#E3B878'/>\n</g>","grain":"<g transform='rotate(-4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M50 22 l0 56'/>\n<path d='M50 34 q-14 -2 -16 -14 q14 2 16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 34 q14 -2 16 -14 q-14 2 -16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 50 q-14 -2 -16 -14 q14 2 16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 50 q14 -2 16 -14 q-14 2 -16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 66 q-14 -2 -16 -14 q14 2 16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n<path d='M50 66 q14 -2 16 -14 q-14 2 -16 14 Z' fill='#E3B878' stroke-width='4.5'/>\n</g>","salad":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 52 q28 8 56 0 q-2 18 -14 24 l-28 0 q-12 -6 -14 -24 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M30 48 q-2 -16 12 -22 q2 12 -4 22 Z' fill='#9DAF7E' stroke-width='4.5'/>\n<path d='M46 46 q4 -18 20 -20 q0 14 -12 22 Z' fill='#9DAF7E' stroke-width='4.5'/>\n<circle cx='60' cy='48' r='4.6' fill='#D4695C' stroke-width='3.4'/>\n</g>","wrap":"<g transform='rotate(-14 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M26 36 q24 -12 48 0 l0 22 q-24 12 -48 0 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M30 40 q8 6 8 16 M74 36 l0 22' />\n<path d='M42 42 q10 -4 20 0 M42 50 q10 -4 20 0' stroke='#9DAF7E' stroke-width='4'/>\n<path d='M42 46 q10 -4 20 0' stroke='#D4695C' stroke-width='4'/>\n</g>","taco":"<g transform='rotate(-3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 66 q0 -34 28 -34 q28 0 28 34 Z' fill='#E3B878' stroke-width='5.5'/>\n<path d='M30 60 q4 -8 10 -4 M46 56 q4 -8 10 -4 M62 58 q4 -8 8 -2' stroke='#9DAF7E' stroke-width='4'/>\n<circle cx='40' cy='48' r='2.6' fill='#D4695C' stroke='none'/>\n<circle cx='56' cy='46' r='2.6' fill='#D4695C' stroke='none'/>\n</g>","sheetpan":"<g transform='rotate(3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='20' y='30' width='60' height='42' rx='7' fill='#4A2B38' stroke='none'/>\n<rect x='27' y='37' width='46' height='28' rx='4' fill='#F6E4DC' stroke-width='4.5'/>\n<circle cx='38' cy='48' r='4.6' fill='#D4695C' stroke-width='3'/>\n<circle cx='52' cy='54' r='4.6' fill='#9DAF7E' stroke-width='3'/>\n<circle cx='62' cy='45' r='4.6' fill='#E09A70' stroke-width='3'/>\n<path d='M14 40 l6 0 M80 40 l6 0'/>\n</g>","gratin":"<g transform='rotate(-2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 46 l60 0 q4 14 -4 24 l-52 0 q-8 -10 -4 -24 Z' fill='#D4695C' stroke-width='5.5'/>\n<path d='M26 46 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0' fill='#F6E4DC' stroke-width='4.5'/>\n<path d='M14 52 l-6 2 M86 52 l6 2'/>\n</g>","skewer":"<g transform='rotate(-35 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M50 10 l0 80'/>\n<rect x='38' y='24' width='24' height='14' rx='5' fill='#D4695C' stroke-width='4.5'/>\n<rect x='38' y='44' width='24' height='14' rx='5' fill='#9DAF7E' stroke-width='4.5'/>\n<rect x='38' y='64' width='24' height='14' rx='5' fill='#E09A70' stroke-width='4.5'/>\n</g>","stew":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 44 l52 0 q6 18 -6 30 l-40 0 q-12 -12 -6 -30 Z' fill='#F6E4DC' stroke='none'/>\n<path d='M30 44 q20 -8 40 0' stroke='#4A2B38' stroke-width='4'/>\n<ellipse cx='50' cy='38' rx='26' ry='6' fill='#F6E4DC' stroke='none'/>\n<circle cx='50' cy='32' r='4' fill='#E3B878' stroke-width='4'/>\n<path d='M16 52 l-6 2 M84 52 l6 2' />\n<path d='M40 22 q-3 -7 2 -12 M58 22 q-3 -7 2 -12'/>\n</g>","papillote":"<g transform='rotate(-4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M32 38 q18 -10 36 0 q6 10 0 24 q-18 10 -36 0 q-6 -14 0 -24 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M32 38 l-14 -6 l6 12 l-6 10 l14 -4 M68 38 l14 -6 l-6 12 l6 10 l-14 -4' fill='#F6E4DC' stroke-width='5'/>\n<path d='M44 46 q6 -4 12 0' stroke='#9DAF7E' stroke-width='4'/>\n</g>","pancakes":"<g transform='rotate(2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='62' rx='28' ry='9' fill='#E3B878' stroke-width='5'/>\n<ellipse cx='50' cy='52' rx='25' ry='8' fill='#E3B878' stroke-width='5'/>\n<ellipse cx='50' cy='42' rx='22' ry='8' fill='#E3B878' stroke-width='5'/>\n<path d='M36 40 q14 8 28 0 l-4 10 q-10 4 -20 0 Z' fill='#E09A70' stroke-width='4'/>\n<rect x='44' y='28' width='12' height='9' rx='2' fill='#F6E4DC' stroke-width='4'/>\n</g>","porridge":"<g transform='rotate(-2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M20 50 q30 10 60 0 q-2 20 -16 26 l-28 0 q-14 -6 -16 -26 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M34 46 q8 -6 16 0 q8 -6 16 0' stroke='#E09A70' stroke-width='4.5'/>\n<circle cx='44' cy='42' r='2.6' fill='#D4695C' stroke='none'/>\n<circle cx='56' cy='41' r='2.6' fill='#D4695C' stroke='none'/>\n<path d='M70 40 q12 -8 16 -18'/>\n</g>","jar":"<g transform='rotate(3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='32' y='28' width='36' height='52' rx='9' fill='#F6E4DC' stroke-width='5.5'/>\n<rect x='30' y='18' width='40' height='10' rx='4' fill='#4A2B38' stroke='none'/>\n<path d='M32 58 q18 6 36 0 l0 12 q-4 8 -10 10 l-16 0 q-6 -2 -10 -10 Z' fill='#D4695C' stroke-width='4'/>\n<path d='M32 44 q18 6 36 0' stroke='#E09A70' stroke-width='4.5'/>\n</g>","toast":"<g transform='rotate(-5 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M26 34 q0 -12 12 -12 q6 -6 14 -4 q10 -4 16 4 q10 2 8 12 l-2 42 q-24 8 -46 0 Z' fill='#E3B878' stroke-width='5.5'/>\n<path d='M34 48 q8 -6 14 0 q8 -6 14 0 l-2 16 q-12 6 -24 0 Z' fill='#9DAF7E' stroke-width='4'/>\n</g>","sandwich":"<g transform='rotate(4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M22 44 l28 -22 l28 22 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M22 50 l56 0' stroke='#9DAF7E' stroke-width='5'/>\n<path d='M20 56 l60 0' stroke='#D4695C' stroke-width='5'/>\n<path d='M24 62 l26 18 l26 -18 Z' fill='#F6E4DC' stroke-width='5.5'/>\n</g>","muffin":"<g transform='rotate(-3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 52 l40 0 l-6 28 l-28 0 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M36 56 l-2 20 M50 56 l0 20 M64 56 l2 20' stroke-width='3.6'/>\n<path d='M26 52 q-4 -22 24 -22 q28 0 24 22 Z' fill='#E09A70' stroke-width='5.5'/>\n<circle cx='42' cy='42' r='2.6' fill='#F6E4DC' stroke='none'/>\n<circle cx='56' cy='40' r='2.6' fill='#F6E4DC' stroke='none'/>\n</g>","bar":"<g transform='rotate(-12 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='22' y='38' width='56' height='26' rx='8' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='36' cy='48' r='3' fill='#F6E4DC' stroke='none'/>\n<circle cx='50' cy='54' r='3' fill='#D4695C' stroke='none'/>\n<circle cx='62' cy='46' r='3' fill='#9DAF7E' stroke='none'/>\n<path d='M30 64 q10 4 20 0' stroke-width='3.6'/>\n</g>","energyball":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='34' cy='58' r='14' fill='#E09A70' stroke-width='5'/>\n<circle cx='62' cy='60' r='12' fill='#D4695C' stroke-width='5'/>\n<circle cx='52' cy='36' r='11' fill='#E3B878' stroke-width='5'/>\n<path d='M28 54 l4 3 M36 62 l4 2 M58 56 l4 3 M48 32 l4 3' stroke-width='3'/>\n</g>","cookie":"<g transform='rotate(6 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='50' cy='52' r='26' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='42' cy='44' r='3.6' fill='#F6E4DC' stroke='none'/>\n<circle cx='58' cy='50' r='3.6' fill='#F6E4DC' stroke='none'/>\n<circle cx='46' cy='62' r='3.6' fill='#F6E4DC' stroke='none'/>\n<path d='M60 64 l6 4' stroke-width='3.4'/>\n</g>","cake":"<g transform='rotate(-3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M28 44 l44 0 l0 32 l-44 0 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M28 54 l44 0' stroke='#D4695C' stroke-width='4.5'/>\n<path d='M28 66 l44 0' stroke='#E09A70' stroke-width='4.5'/>\n<path d='M28 44 q11 -8 22 0 q11 -8 22 0' stroke-width='5'/>\n<circle cx='50' cy='30' r='4.6' fill='#D4695C' stroke-width='3.4'/>\n</g>","yogurt":"<g transform='rotate(2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 34 l40 0 l-6 44 q-4 6 -14 6 q-10 0 -14 -6 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M30 34 q20 -8 40 0' stroke-width='5'/>\n<path d='M40 48 q10 -8 20 0 q-4 8 -10 8 q-6 0 -10 -8 Z' fill='#D4695C' stroke-width='4'/>\n<circle cx='44' cy='64' r='2.6' fill='#4A2B38' stroke='none'/>\n<circle cx='56' cy='64' r='2.6' fill='#4A2B38' stroke='none'/>\n</g>","smoothie":"<g transform='rotate(-3 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M34 30 l32 0 l-6 48 q-2 6 -10 6 q-8 0 -10 -6 Z' fill='#E09A70' stroke-width='5.5'/>\n<path d='M34 30 q16 -6 32 0' stroke-width='5'/>\n<path d='M54 26 l10 -16' stroke-width='5'/>\n<path d='M40 44 q10 6 20 0' stroke='#4A2B38' stroke-width='4'/>\n</g>","fruit":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='36' cy='58' r='13' fill='#D4695C' stroke-width='5'/>\n<circle cx='62' cy='58' r='13' fill='#D4695C' stroke-width='5'/>\n<circle cx='49' cy='38' r='12' fill='#D4695C' stroke-width='5'/>\n<path d='M49 26 q0 -8 8 -10' />\n<path d='M57 22 q10 -2 12 6 q-10 4 -12 -6 Z' fill='#9DAF7E' stroke-width='4'/>\n</g>","nuts":"<g transform='rotate(-6 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M30 36 q12 -8 18 4 q6 14 -6 22 q-14 4 -18 -8 q-2 -12 6 -18 Z' fill='#E09A70' stroke-width='5'/>\n<path d='M60 40 q12 -4 16 8 q2 12 -10 16 q-12 2 -14 -10 q0 -10 8 -14 Z' fill='#E3B878' stroke-width='5'/>\n<path d='M36 46 q4 4 2 10 M64 50 q4 4 2 8' stroke-width='3.4'/>\n</g>","dip":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<path d='M24 56 q26 8 52 0 q-2 16 -12 22 l-28 0 q-10 -6 -12 -22 Z' fill='#F6E4DC' stroke-width='5.5'/>\n<path d='M34 52 q8 -8 16 -2 q8 -6 16 2' stroke='#E09A70' stroke-width='4.5'/>\n<path d='M38 30 l6 20 M52 26 l2 24 M66 30 l-4 20' stroke='#9DAF7E' stroke-width='5'/>\n</g>","crackers":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<rect x='22' y='34' width='30' height='30' rx='6' transform='rotate(-8 37 49)' fill='#E3B878' stroke-width='5'/>\n<rect x='50' y='42' width='28' height='28' rx='6' transform='rotate(7 64 56)' fill='#F6E4DC' stroke-width='5'/>\n<circle cx='33' cy='45' r='2' fill='#F6E4DC' stroke='none'/>\n<circle cx='41' cy='53' r='2' fill='#F6E4DC' stroke='none'/>\n<circle cx='60' cy='52' r='2' fill='#4A2B38' stroke='none'/>\n<circle cx='68' cy='60' r='2' fill='#4A2B38' stroke='none'/>\n</g>","flatbread":"<g transform='rotate(-4 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='52' rx='30' ry='20' fill='#E3B878' stroke-width='5.5'/>\n<circle cx='40' cy='46' r='3' fill='#E09A70' stroke-width='3'/>\n<circle cx='56' cy='56' r='3' fill='#E09A70' stroke-width='3'/>\n<circle cx='58' cy='42' r='2.6' fill='#E09A70' stroke='none'/>\n<path d='M42 60 q4 -4 8 0' stroke='#9DAF7E' stroke-width='3.6'/>\n</g>","pie":"<g transform='rotate(2 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<ellipse cx='50' cy='56' rx='30' ry='18' fill='#E09A70' stroke-width='5.5'/>\n<path d='M20 56 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0 q6 -8 12 0' fill='#E3B878' stroke-width='4.5'/>\n<path d='M34 44 l12 22 M66 44 l-12 22 M50 42 l0 26' stroke='#4A2B38' stroke-width='3.8'/>\n<path d='M44 30 q-3 -7 2 -12 M58 30 q-3 -7 2 -12'/>\n</g>","plate":"<g transform='rotate(0 50 50)' stroke='#F6E4DC' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'>\n<circle cx='52' cy='52' r='26' fill='#F6E4DC' stroke-width='5.5'/>\n<circle cx='52' cy='52' r='14' stroke-width='4'/>\n<path d='M18 30 l0 26 M14 30 l0 10 q0 6 4 6 M22 30 l0 10 q0 6 -4 6'/>\n</g>"}};
 const TRAITS = {"mer":"M15 50 C18 35 33 27 50 27 C67 27 80 36 88 50 C80 64 67 73 50 73 C33 73 18 65 15 50 C24 47 33 45 40 50 C33 55 24 53 15 50 C20 46 26 44 30 47 C33 44 33 41 30 39","viande":"M40 20 C38 26 38 32 42 36 C36 40 32 48 32 56 C32 66 40 76 52 78 C64 80 74 72 76 60 C78 50 72 42 64 38 C68 34 68 28 64 22 C60 26 58 30 56 32 C52 28 48 24 44 22 C42 21 41 20 40 20","oeuf":"M15 50 C15 35 30 25 50 25 C72 25 88 33 87 50 C88 67 72 76 50 76 C28 76 15 66 15 50 C15 50 25 50 30 50 C30 42 38 36 47 36 C58 36 65 42 65 50 C65 58 58 64 47 64 C38 64 30 58 30 50","bol":"M18 55 C18 70 32 80 50 80 C68 80 82 70 82 55 C82 53 80 52 78 53 C75 54 25 54 22 53 C20 52 18 53 18 55 C25 45 35 40 33 28 C31 20 38 15 40 18 C42 22 36 26 40 32 C44 38 44 44 40 48 C50 42 52 34 48 26 C46 20 50 14 54 16 C58 18 52 24 55 30 C58 36 60 42 58 48","cocotte":"M15 50 C15 42 20 40 24 43 C22 38 26 35 30 38 C28 40 30 44 33 45 C38 36 50 32 62 35 C67 34 70 40 68 45 C71 44 75 40 73 38 C77 35 81 38 79 43 C83 40 88 42 88 50 C88 58 80 64 68 65 C68 70 60 76 50 76 C40 76 32 70 32 65 C20 64 12 58 15 50 C22 56 30 58 33 55 C36 58 44 60 50 60 C56 60 64 58 67 55 C70 58 78 56 85 50","plaque":"M15 32 C15 29 18 27 22 27 C40 27 60 27 78 27 C82 27 85 29 85 32 C85 44 85 57 85 68 C85 71 82 73 78 73 C60 73 40 73 22 73 C18 73 15 71 15 68 C15 57 15 44 15 32 C25 40 25 48 32 48 C39 48 39 40 32 40 C39 40 32 48 39 48 C46 40 46 48 53 48 C60 48 60 40 53 40 C60 40 53 48 60 48 C67 40 67 48 74 48 C81 40 74 32 67 40","wrap":"M50 50 C50 46 54 44 58 46 C64 49 64 57 58 61 C50 66 40 62 38 54 C36 44 44 36 55 34 C68 32 78 42 78 55 C78 68 66 78 52 78 C36 78 24 66 24 50 C24 32 38 18 56 18 C70 18 82 28 84 42","bocal":"M28 42 C24 40 24 36 28 34 C32 32 68 32 72 34 C76 36 76 40 72 42 C76 46 78 50 78 56 C78 66 78 76 78 82 C78 87 70 90 60 90 C56 90 44 90 40 90 C30 90 22 87 22 82 C22 76 22 66 22 56 C22 50 24 46 28 42 C26 38 26 34 30 32 C34 30 66 30 70 32 C74 34 74 38 72 42","pancakes":"M18 74 C18 70 32 67 50 67 C68 67 82 70 82 74 C82 78 68 81 50 81 C32 81 18 78 18 74 C20 66 34 63 50 63 C66 63 80 66 82 66 C80 60 66 57 50 57 C34 57 20 60 18 66 C20 58 34 55 50 55 C66 55 80 58 82 62 C82 54 70 50 55 49 C58 45 56 41 52 40 C50 44 52 47 55 48","muffin":"M25 58 C23 62 24 66 26 62 C25 67 26 71 28 67 C27 72 29 76 31 88 C32 91 68 91 69 88 C71 76 73 72 72 67 C74 71 75 67 74 62 C76 66 77 62 75 58 C80 56 82 50 78 44 C74 38 66 34 58 33 C66 30 68 24 62 22 C58 26 58 30 56 33 C50 32 44 32 38 33 C40 28 36 24 32 26 C30 30 32 34 34 34 C26 36 20 42 22 48 C18 52 20 56 25 58","fruit":"M50 30 C46 24 40 22 36 26 C33 29 34 34 38 36 C28 34 18 42 16 54 C14 66 24 78 38 82 C44 84 48 82 50 80 C52 82 56 84 62 82 C76 78 86 66 84 54 C82 42 72 34 62 36 C66 34 67 29 64 26 C60 22 54 24 50 30 C52 26 56 22 60 20","gousse":"M20 50 C20 38 30 28 45 26 C60 24 75 30 82 42 C86 48 86 54 80 58 C70 66 55 70 40 68 C26 66 18 60 20 50 C28 54 34 56 34 50 C34 44 28 44 24 48 C30 42 38 44 40 50 C40 44 34 42 30 46 C38 40 46 42 48 48 C48 42 42 40 38 44 C46 38 54 40 56 46"};
 const TRAITMAP = {"fish":"mer","salmon":"mer","shrimp":"mer","mussel":"mer","squid":"mer","chicken":"viande","duck":"viande","pork":"viande","beef":"viande","meatball":"viande","egg":"oeuf","tofu":"oeuf","lentils":"gousse","beans":"gousse","cheese":"plaque","bowl":"bol","curry":"bol","soup":"bol","noodles":"bol","rice":"bol","pasta":"bol","grain":"gousse","salad":"bol","wrap":"wrap","taco":"wrap","sheetpan":"plaque","gratin":"cocotte","skewer":"viande","stew":"cocotte","papillote":"plaque","pancakes":"pancakes","porridge":"bol","jar":"bocal","toast":"wrap","sandwich":"wrap","muffin":"muffin","bar":"muffin","energyball":"muffin","cookie":"pancakes","cake":"muffin","yogurt":"bocal","smoothie":"bocal","fruit":"fruit","nuts":"fruit","dip":"bocal","crackers":"plaque","flatbread":"wrap","pie":"muffin","plate":"plaque"};
+const COULEURS = {"univers":{"Méditerranée & Levant":{"fg":"#586D26","bg":"#F4F6EE"},"Asie douce":{"fg":"#26735C","bg":"#EEF7F4"},"Amérique latine & soleil":{"fg":"#B44422","bg":"#F8EFED"},"Terroir & Europe revisités":{"fg":"#995833","bg":"#F6F1EE"},"Océan — poissons & fruits de mer":{"fg":"#28708A","bg":"#EEF4F6"},"Veggie protéiné & céréales du monde":{"fg":"#37762D","bg":"#EFF6EE"},"Levant une-plaque — esprit Simple":{"fg":"#886220","bg":"#F7F4ED"},"Petits-déj sucrés protéinés":{"fg":"#BA3666","bg":"#F7EDF1"},"Petits-déj salés & du monde":{"fg":"#7A641A","bg":"#F7F5ED"},"Matins du Levant — esprit Simple":{"fg":"#BE3742","bg":"#F8EDED"},"Collations sucrées sportives":{"fg":"#9F419F","bg":"#F7EEF7"},"Collations salées & récupération":{"fg":"#6B692E","bg":"#F6F5EF"},"Encas du Levant — esprit Simple":{"fg":"#7D57A2","bg":"#F2EDF7"}},"badges":{"protéiné":{"fg":"#B03B75","bg":"#F7EDF2"},"anti-inflammatoire":{"fg":"#29754F","bg":"#EEF6F2"},"digestion-facile":{"fg":"#4A702E","bg":"#F2F6EE"},"express":{"fg":"#975820","bg":"#F8F2ED"},"one-pot":{"fg":"#43699D","bg":"#EEF2F7"},"sans-gluten":{"fg":"#2D7076","bg":"#EEF6F6"},"veggie":{"fg":"#2D7637","bg":"#EEF6EF"},"oméga-3":{"fg":"#386E94","bg":"#EEF3F6"}},"macros":{"prot":{"fg":"#BA3657","bg":"#F8EDF0"},"kcal":{"fg":"#93591F","bg":"#F8F2ED"},"gluc":{"fg":"#78651C","bg":"#F7F5ED"},"lip":{"fg":"#7B56AE","bg":"#F1EEF7"},"fibres":{"fg":"#2D763F","bg":"#EEF6F0"}}};
 </script>
 <script>
 /* ================= Bonne Pioche — moteur ================= */
@@ -553,6 +580,39 @@ function normNom(nom) {
 }
 function capFirst(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 /* Pictogrammes gouache (PICTOS.light / PICTOS.dark) + filigrane one-line (TRAITS/TRAITMAP) */
+/* ---------- Système chromatique (COULEURS injecté au build) ---------- */
+const C_FALLBACK = { fg: "#7D4453", bg: "#F7ECE7" };
+function cLookup(groupe, cle) {
+  const g = (typeof COULEURS !== "undefined" && COULEURS[groupe]) || {};
+  return g[cle] || g[String(cle || "").toLowerCase()] || C_FALLBACK;
+}
+function univColor(u) { return cLookup("univers", u); }
+function badgeColor(b) { return cLookup("badges", b); }
+function macroColor(m) { return cLookup("macros", m); }
+const RAYON_COLOR = {
+  "Fruits & Légumes": { fg: "#4F7A3F", bg: "#EAF2E2" },
+  "Boucherie & Poisson": { fg: "#B14C43", bg: "#FAE6E3" },
+  "Frais & Crèmerie": { fg: "#9A6A22", bg: "#FBF0DC" },
+  "Épicerie salée": { fg: "#8A5A32", bg: "#F7EADF" },
+  "Épicerie sucrée": { fg: "#A5537B", bg: "#FAE7F0" },
+  "Surgelés": { fg: "#3E7C86", bg: "#E2F0F2" },
+  "Boulangerie": { fg: "#9B6B3A", bg: "#F8EEE0" },
+  "Autres": { fg: "#7D4453", bg: "#F7ECE7" }
+};
+function rayonColor(r) { return RAYON_COLOR[r] || RAYON_COLOR["Autres"]; }
+function chipHTML(b) {
+  const c = badgeColor(b);
+  return `<span class="chip" style="background:${c.bg};color:${c.fg}">${esc(b)}</span>`;
+}
+function macroHTML(key, val, label) {
+  const c = macroColor(key);
+  return `<div><div class="v" style="color:${c.fg}">${val}</div><div class="k">${label}</div></div>`;
+}
+/* pastille colorée derrière un picto */
+function pictoPastille(r, cls) {
+  const c = univColor(r.univers);
+  return `<span class="pastille ${cls || ""}" style="background:${c.bg}">${pictoSVG(r, "picto")}</span>`;
+}
 function pictoKey(r) {
   return (typeof ICONMAP !== "undefined" && ICONMAP[r.id]) || "plate";
 }
@@ -888,7 +948,8 @@ function renderDeck(page) {
   ${vtitleHTML(vedette)}
   <div class="deck-wrap">
     <div class="deck-head">
-      ${head}
+      <button class="deck-back" id="deck-back" title="Revenir à l'accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg></button>
+      <div class="dh-mid">${head}</div>
     </div>
     <div class="progress-dots">${dots}</div>
     <div class="deck" id="deck">
@@ -908,6 +969,9 @@ function renderDeck(page) {
   $("#btn-like").addEventListener("click", () => swipeOut(topCard, true));
   $("#btn-super").addEventListener("click", () => swipeOut(topCard, true, 0, 0, true));
   $("#btn-info").addEventListener("click", () => openModal(remaining[0]));
+  $("#deck-back").addEventListener("click", () => {
+    S.session = null; save.session(); render(); toast("Pioche interrompue");
+  });
   if (topCard) attachDrag(topCard);
 }
 function superAvailable() {
@@ -934,6 +998,7 @@ function plateLine(r) {
 function cardHTML(r, depth) {
   const cls = depth === 0 ? "card" : depth === 1 ? "card behind" : "card behind2";
   if (depth !== 0) return `<div class="${cls}" data-id="${r.id}"></div>`;
+  const uc = univColor(r.univers);
   return `
   <div class="${cls}" data-id="${r.id}">
     <div class="stamp like">MIAM</div>
@@ -941,21 +1006,22 @@ function cardHTML(r, depth) {
     <div class="stamp super">⭐ OPTION</div>
     <span class="chev l">‹</span><span class="chev r">›</span>
     ${isFav(r.id) ? '<span class="fav-tag">Favori</span>' : ""}
+    <div class="card-band" style="background:${uc.fg}"></div>
     <div class="card-inner">
       <div class="grip"></div>
-      <div class="card-visu">${pictoSVG(r, "picto")}</div>
+      <div class="card-visu"><span class="pastille big" style="background:${uc.bg}">${pictoSVG(r, "picto")}</span></div>
       <div class="card-body">
-        <span class="univers-tag caps">${esc(r.univers)}</span>
+        <span class="univers-tag caps" style="color:${uc.fg}">${esc(r.univers)}</span>
         <h3>${esc(r.nom)}</h3>
         <div class="accroche">« ${esc(r.accroche)} »</div>
         <div class="cut"></div>
         <div class="macro-strip">
-          <div><div class="v">${r.tempsActif}'</div><div class="k">Actives</div></div>
-          <div><div class="v">${r.portions}</div><div class="k">Portions</div></div>
-          <div><div class="v">${r.macros.prot}g</div><div class="k">Prot</div></div>
-          <div><div class="v">${r.macros.kcal}</div><div class="k">Kcal</div></div>
+          ${macroHTML("temps", r.tempsActif + "'", "Actives")}
+          ${macroHTML("portions", r.portions, "Portions")}
+          ${macroHTML("prot", r.macros.prot + "g", "Prot")}
+          ${macroHTML("kcal", r.macros.kcal, "Kcal")}
         </div>
-        <div class="meta-row">${(r.badges || []).slice(0, 3).map(b => `<span class="chip">${esc(b)}</span>`).join("")}</div>
+        <div class="meta-row">${(r.badges || []).slice(0, 3).map(chipHTML).join("")}</div>
         <div class="card-plate">
           <span class="caps">Dans l'assiette</span>
           <div class="pl">${esc(plateLine(r))}</div>
@@ -1141,10 +1207,11 @@ function renderSemaine() {
         <div class="cellfoot">${mov}<span></span></div>
       </div>`;
     }
-    return `<div class="cell${isToday ? " today" : ""}" data-day="${i}" data-id="${r.id}">
+    const uc = univColor(r.univers);
+    return `<div class="cell${isToday ? " today" : ""}" data-day="${i}" data-id="${r.id}" style="--uc:${uc.fg};--ub:${uc.bg}">
       ${isToday ? '<span class="todaytag">AUJOURD\'HUI</span>' : ""}
       <span class="dnum">${dt.getDate()}</span><span class="dw">${JOURS_ABR[i]}</span>
-      ${pictoSVG(r, "picto")}
+      <span class="pastille" style="background:${uc.bg}">${pictoSVG(r, "picto")}</span>
       <div class="dish">${esc(r.nom)}</div>
       <div class="lun">→ lunch ${JOURS_ABR[(i + 1) % 7].slice(0, 3).toLowerCase()}. midi</div>
       <div class="cellfoot">${mov}<button class="swapb" data-swap="${i}" title="Remplacer">${SWAP_IC}</button></div>
@@ -1154,7 +1221,7 @@ function renderSemaine() {
   const rotLines = [].concat(
     w.petitsDejs.slice(0, 2).map(id => byId[id]),
     w.collations.slice(0, 2).map(id => byId[id])
-  ).filter(Boolean).map(r => `<div class="rline" data-id="${r.id}">${pictoSVG(r, "picto")}<span>${esc(r.nom)}</span></div>`).join("");
+  ).filter(Boolean).map(r => `<div class="rline" data-id="${r.id}"><span class="pastille" style="background:${univColor(r.univers).bg}">${pictoSVG(r, "picto")}</span><span>${esc(r.nom)}</span></div>`).join("");
 
   page.innerHTML = `
   ${monoByFamily("bol", 0)}
@@ -1263,7 +1330,7 @@ function renderCourses() {
   const rayonsHTML = RAYONS.filter(r => byRayon[r]).map((r, ri) => `
     <div class="rayon-block">
       ${ri > 0 ? '<div class="cut"></div>' : ""}
-      <div class="rayon-title">${r} <span class="n">${byRayon[r].filter(i => !S.checked[i.key]).length} restants</span></div>
+      <div class="rayon-title" style="color:${rayonColor(r).fg}"><span class="rname"><span class="rdot" style="background:${rayonColor(r).fg}"></span>${r}</span><span class="n">${byRayon[r].filter(i => !S.checked[i.key]).length} restants</span></div>
       ${byRayon[r].map(it => `
         <label class="course-item ${S.checked[it.key] ? "done" : ""}" data-key="${esc(it.key)}">
           <input type="checkbox" ${S.checked[it.key] ? "checked" : ""}>
@@ -1435,8 +1502,9 @@ function renderBrowse() {
 function rowHTML(r, noHeart, variant) {
   if (!r) return "";
   const cls = "r-row" + (variant ? " " + variant : "");
-  return `<div class="${cls}" data-id="${r.id}">
-    <div class="thumb">${pictoSVG(r, "picto")}</div>
+  const uc = univColor(r.univers);
+  return `<div class="${cls}" data-id="${r.id}" style="--uc:${uc.fg}">
+    <div class="thumb" style="background:${uc.bg}">${pictoSVG(r, "picto")}</div>
     <div class="tt"><h4>${esc(r.nom)}</h4>
       <div class="mm"><span>${CAT_LABEL[r.categorie] || ""}</span><span>${r.tempsActif} min</span><span>${r.macros.prot}g prot</span></div></div>
     ${noHeart ? "" : `<button class="heart${isFav(r.id) ? " on" : ""}" data-fav="${r.id}">${isFav(r.id) ? "♥" : "♡"}</button>`}
@@ -1452,25 +1520,27 @@ function openModal(id) {
   const r = byId[id]; if (!r) return;
   const mb = $("#modal-back"), m = $("#modal");
   const num = RECETTES.indexOf(r) + 1;
+  const uc = univColor(r.univers);
   m.innerHTML = `
   <div class="modal-body">
     <button class="modal-fav" id="m-fav">${isFav(id) ? "♥" : "♡"}</button>
     <button class="modal-close" id="m-close">✕</button>
-    <span class="caps">N° ${String(num).padStart(3, "0")} / ${RECETTES.length} · ${esc(r.univers)}</span>
+    <div class="modal-band" style="background:${uc.fg}"></div>
+    <span class="caps" style="color:${uc.fg}">N° ${String(num).padStart(3, "0")} / ${RECETTES.length} · ${esc(r.univers)}</span>
     <div class="modal-head mt8">
       <div>
         <h3>${esc(r.nom)}</h3>
         <div class="accroche">« ${esc(r.accroche)} »</div>
       </div>
-      ${pictoSVG(r, "picto modal-picto")}
+      <span class="pastille mid" style="background:${uc.bg}">${pictoSVG(r, "picto modal-picto")}</span>
     </div>
     <div class="cut"></div>
     <div class="macro-grid">
-      <div><div class="v">${r.macros.prot}g</div><div class="k">Prot</div></div>
-      <div><div class="v">${r.macros.kcal}</div><div class="k">Kcal</div></div>
-      <div><div class="v">${r.macros.gluc}g</div><div class="k">Gluc</div></div>
-      <div><div class="v">${r.macros.lip}g</div><div class="k">Lip</div></div>
-      <div><div class="v">${r.macros.fibres}g</div><div class="k">Fibres</div></div>
+      ${macroHTML("prot", r.macros.prot + "g", "Prot")}
+      ${macroHTML("kcal", r.macros.kcal, "Kcal")}
+      ${macroHTML("gluc", r.macros.gluc + "g", "Gluc")}
+      ${macroHTML("lip", r.macros.lip + "g", "Lip")}
+      ${macroHTML("fibres", r.macros.fibres + "g", "Fibres")}
     </div>
     <div class="cut"></div>
     <h4 class="mh">La cagette · ${r.portions} portions</h4>
@@ -1480,7 +1550,7 @@ function openModal(id) {
     <ol class="steps">${(r.etapes || []).map(e2 => `<li>${esc(e2)}</li>`).join("")}</ol>
     ${r.batchTip ? `<div class="cut"></div><div class="batch-tip"><b>Batch :</b> ${esc(r.batchTip)}</div>` : ""}
     <div class="meta-row" style="justify-content:flex-start;margin-top:12px">
-      ${(r.badges || []).map(bg => `<span class="chip">${esc(bg)}</span>`).join("")}
+      ${(r.badges || []).map(chipHTML).join("")}
     </div>
     <div class="sub" style="font-size:10px;margin-top:10px">Macros par portion, estimations.</div>
     ${isFav(id) ? '<div class="mstamp">MIAM VALIDÉ</div>' : ""}
@@ -1736,8 +1806,11 @@ function renderRemoteDeck(page) {
   ${vtitleHTML(vedette)}
   <div class="deck-wrap">
     <div class="deck-head">
-      <div class="phase-lbl">${esc(ph.titre)} · manche ${rs.round}</div>
-      <div class="count">${rs.idx + 1}/${rs.deck.length}</div>
+      <button class="deck-back" id="deck-back" title="Revenir à l'accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg></button>
+      <div class="dh-mid">
+        <div class="phase-lbl">${esc(ph.titre)} · manche ${rs.round}</div>
+        <div class="count">${rs.idx + 1}/${rs.deck.length}</div>
+      </div>
     </div>
     <div class="deck" id="deck">${top3.map((r, i) => cardHTML(r, i)).reverse().join("")}</div>
     <div class="hint"><span class="caps">← passe · <b>glisse la carte</b> · j'adore →</span></div>
@@ -1753,6 +1826,9 @@ function renderRemoteDeck(page) {
   $("#btn-like").addEventListener("click", () => swipeOut(topCard, true));
   $("#btn-super").addEventListener("click", () => swipeOut(topCard, true, 0, 0, true));
   $("#btn-info").addEventListener("click", () => openModal(remaining[0]));
+  $("#deck-back").addEventListener("click", () => {
+    S.rswipe = null; store.set("bp_rswipe", null); render();
+  });
   if (topCard) attachDrag(topCard);
 }
 function remoteVote(id, liked, superLike) {
