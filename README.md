@@ -15,7 +15,7 @@ Application de planification de repas pour deux sportifs épicuriens en prépa H
 
 ## La base de recettes
 
-360 recettes originales générées et validées sur mesure : 7 univers de dîners (Méditerranée & Levant, Asie douce, Amérique latine, Terroir & Europe revisités, Océan, Veggie protéiné, et « Levant une-plaque — esprit Simple », inspiré de la philosophie du livre de Yotam Ottolenghi : ≤ 10 ingrédients, cuisson une-plaque, gros goûts sans effort), 3 univers de petits-déjeuners et 3 de collations.
+400 recettes originales générées et validées sur mesure (dont 40 « express » réellement faisables en 5–10 minutes chrono) : 7 univers de dîners (Méditerranée & Levant, Asie douce, Amérique latine, Terroir & Europe revisités, Océan, Veggie protéiné, et « Levant une-plaque — esprit Simple », inspiré de la philosophie du livre de Yotam Ottolenghi : ≤ 10 ingrédients, cuisson une-plaque, gros goûts sans effort), 3 univers de petits-déjeuners et 3 de collations.
 
 Toutes respectent le cahier des charges santé du foyer :
 
@@ -25,7 +25,9 @@ Toutes respectent le cahier des charges santé du foyer :
 
 ## Utilisation
 
-Ouvrir simplement **[l'app en ligne](https://USERNAME.github.io/bonne-pioche/)** — ou `index.html` dans n'importe quel navigateur.
+Ouvrir simplement **[l'app en ligne](https://mathieubigardpro-afk.github.io/bonne-pioche/)** — ou `index.html` dans n'importe quel navigateur.
+
+Il existe aussi **[Bonne Pioche Facile](https://mathieubigardpro-afk.github.io/bonne-pioche-facile/)** : la même application, simplifiée (3 onglets, gros textes, appairage guidé) pour les membres de la famille moins à l'aise avec un téléphone.
 
 Sur téléphone : ouvrir l'URL, puis **Partager → Sur l'écran d'accueil** (iOS) ou **⋮ → Ajouter à l'écran d'accueil** (Android). L'app s'installe comme une vraie application.
 
@@ -33,7 +35,8 @@ Sans synchro configurée, les données restent locales à l'appareil. Avec la sy
 
 ## Sous le capot
 
-- Un seul fichier `index.html` autonome : HTML + CSS + JS + les 300 recettes embarquées. Aucune dépendance, aucun serveur, aucun tracker.
+- Un seul fichier `index.html` autonome : HTML + CSS + JS + les 400 recettes embarquées. Aucune dépendance, aucun compte, aucun traceur publicitaire. La synchro à deux téléphones (optionnelle) passe par une base Google Firebase hébergée en Europe — détail complet dans [confidentialite.html](confidentialite.html).
+- Un service worker (`sw.js`) garde une copie de l'app : elle s'ouvre même sans réseau.
 - Base de recettes générée par une orchestration multi-agents (Claude Fable 5 orchestrateur + 10 agents Sonnet en parallèle, un univers culinaire chacun), puis validée programmatiquement : schéma, doublons, cohérence kcal/macros, normalisation des unités pour l'agrégation des courses.
 
 ---
