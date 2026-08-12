@@ -33,10 +33,10 @@
   --nav-h:calc(56px + 16px + env(safe-area-inset-bottom));
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%}
+html,body{height:100%;overflow-x:hidden;overscroll-behavior-x:none}
 body{
   font-family:var(--font-body); background:#E9E2D2; color:var(--encre);
-  display:flex; justify-content:center; overscroll-behavior:none;
+  display:flex; justify-content:center; overscroll-behavior:none; max-width:100vw;
 }
 #app{
   width:100%; max-width:480px; height:100dvh; position:relative; overflow:hidden;
@@ -70,7 +70,8 @@ body{
 .vtitle.sm{font-size:27px}
 /* ---------- Main / pages ---------- */
 main{flex:1; position:relative; overflow:hidden; z-index:1}
-.page{display:none; position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch}
+.page{display:none; position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch;
+      overscroll-behavior:contain; touch-action:pan-y}
 .page.active{display:block}
 .page.nuit{background:radial-gradient(120% 90% at 50% 30%, #55333F 0%, #4A2B38 45%, #38202A 100%)}
 .pad{padding:calc(50px + var(--safe-t)) 18px calc(var(--nav-h) + 26px)}
@@ -397,7 +398,7 @@ nav button .bdg{
   font-family:var(--font-body);font-size:14px;background:var(--blanc);color:var(--encre);outline:none;
   box-shadow:var(--sh-soft);
 }
-.filter-scroll{display:flex;gap:6px;overflow-x:auto;padding:5px 0 3px;scrollbar-width:none}
+.filter-scroll{display:flex;gap:6px;overflow-x:auto;padding:5px 0 3px;scrollbar-width:none;touch-action:pan-x;overscroll-behavior-x:contain}
 .filter-scroll::-webkit-scrollbar{display:none}
 .f-chip{
   flex-shrink:0;border:none;background:var(--creme2);color:var(--prune);
@@ -410,11 +411,13 @@ nav button .bdg{
 .modal-back.open{display:flex}
 .modal{
   background:var(--blanc);width:100%;max-height:94%;border-radius:26px 26px 0 0;
-  overflow-y:auto;animation:slideUp .28s cubic-bezier(.2,.9,.3,1);
+  overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;
+  animation:slideUp .28s cubic-bezier(.2,.9,.3,1);
 }
 @keyframes slideUp{from{transform:translateY(60px);opacity:.4} to{transform:none;opacity:1}}
 .modal-visu{display:none}
-.modal-body{padding:20px 24px 34px;position:relative}
+.modal-body{padding:20px 24px 34px;position:relative;overflow-x:clip}
+.modal-caps{display:block;padding-right:80px}
 .modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .modal-body h3{font-family:var(--font-display);font-weight:600;font-size:24px;line-height:1.15;color:var(--encre);max-width:250px}
 .modal-body .accroche{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--encre-2);line-height:1.5;margin-top:7px;max-width:245px}
@@ -1751,7 +1754,7 @@ function openModal(id) {
     <button class="modal-fav" id="m-fav">${isFav(id) ? "♥" : "♡"}</button>
     <button class="modal-close" id="m-close">✕</button>
     <div class="modal-band" style="background:${uc.fg}"></div>
-    <span class="caps" style="color:${uc.fg}">N° ${String(num).padStart(3, "0")} / ${RECETTES.length} · ${esc(r.univers)}</span>
+    <span class="caps modal-caps" style="color:${uc.fg}">N° ${String(num).padStart(3, "0")} / ${RECETTES.length} · ${esc(r.univers)}</span>
     <div class="modal-head mt8">
       <div>
         <h3>${esc(r.nom)}</h3>
