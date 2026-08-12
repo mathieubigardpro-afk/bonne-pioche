@@ -28,7 +28,8 @@ Dix minutes, une seule fois, depuis un ordinateur. À la fin, vous aurez une pet
     "rooms": {
       "$room": {
         ".read": true,
-        ".write": true
+        ".write": true,
+        ".validate": "$room.matches(/^(bp|fac)-[a-z0-9-]{4,60}$/)"
       }
     }
   }
@@ -36,6 +37,10 @@ Dix minutes, une seule fois, depuis un ordinateur. À la fin, vous aurez une pet
 ```
 
 Ce que ça fait : toute la base est fermée, sauf les "foyers" (`rooms`). Un foyer n'est accessible qu'à qui connaît son code — c'est le principe du code secret. Pour deux utilisateurs, le niveau de risque est celui d'un lien de partage privé.
+
+> ℹ️ **Source de vérité** : ces règles sont détaillées et expliquées dans
+> [`FIREBASE_REGLES.md`](FIREBASE_REGLES.md) (le document le plus récent). En cas de
+> différence entre les deux fichiers, c'est celui-là qui fait foi.
 
 ## Étape 4 — Connecter les deux téléphones (~2 min)
 

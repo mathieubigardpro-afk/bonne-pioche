@@ -1,13 +1,20 @@
 # Sécuriser la base Firebase de Bonne Pioche
 
-## Situation actuelle
+## Situation actuelle — vérifiée le 12/08/2026
 
 Les deux applications utilisent la Realtime Database `bonne-pioche-9cb86` (europe-west1)
-en accès REST, sans authentification. La confidentialité repose uniquement sur le secret
-du code de foyer (ex. `fac-citron-miel-42`) : quiconque connaît un code peut lire et
-écrire les données de ce foyer. Personne ne peut trouver un code par simple navigation
-(il faut le deviner), mais des règles ouvertes `.read: true / .write: true` à la racine
-permettraient de lister toute la base. Il faut donc interdire la lecture à la racine.
+en accès REST, sans authentification. La confidentialité repose sur le secret du code de
+foyer (ex. `fac-citron-miel-42`) : quiconque connaît un code peut lire et écrire les
+données de ce foyer.
+
+**Les règles de base sont déjà déployées** (étape 3 du GUIDE_FIREBASE, faite à la
+création du projet) — vérifié en production :
+
+- `GET /.json` → **401 Permission denied** ✅ (impossible de lister les foyers)
+- `GET /rooms/<code>.json` → répond ✅ (l'accès par code fonctionne)
+
+Il reste seulement à ajouter la contrainte `.validate` ci-dessous (formats de codes),
+qui est un durcissement optionnel, pas une urgence.
 
 ## Règles recommandées
 
