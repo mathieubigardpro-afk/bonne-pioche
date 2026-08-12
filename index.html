@@ -211,9 +211,20 @@ nav button .bdg{
 .home-cta{margin-top:16px}
 .home-foot{text-align:center;font-size:11.5px;color:var(--rose);line-height:1.5;margin-top:12px}
 @media (max-height:740px){
-  .home-q{font-size:27px}
-  .home-total b{font-size:44px}
-  .home-mid{min-height:40px}
+  .home-q{font-size:25px}
+  .home-total b{font-size:38px}
+  .home-total span{font-size:10px;margin-top:4px}
+  .home-mid{min-height:26px}
+  .home-tiles{margin-top:16px}
+  .home-tile .ht-v{font-size:36px;margin-top:8px}
+  .home-tile .ht-s{min-height:0;font-size:9.5px}
+  .home-mode button{height:52px;font-size:11.5px}
+  .home-serre{padding:8px 13px;margin-top:7px}
+  .hs-lbl{font-size:12.5px}
+  .hs-lbl small{font-size:10px}
+  .home-cta{margin-top:10px}
+  .home-cta.btn{padding:11px 22px;font-size:15px}
+  .home-foot{display:none}
   .home-tile .ht-v{font-size:42px}
   .home-mode button{height:56px}
   .home-cta{margin-top:14px}
@@ -272,6 +283,45 @@ nav button .bdg{
 .cout-chip small{font-family:var(--font-body);font-weight:700;font-size:9px;letter-spacing:.06em;
   text-transform:uppercase;color:var(--rose)}
 @media (max-height:740px){.cout-chip{font-size:13px;padding:5px 9px}}
+/* ---- bascule de mode animée ---- */
+.home-mode button{transition:background .28s cubic-bezier(.4,0,.2,1),color .28s}
+.home-mode button:active{transform:scale(.97)}
+.home-q.swapping,.home-foot.swapping{animation:home-swap .38s cubic-bezier(.22,1,.36,1)}
+@keyframes home-swap{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+/* ---- budget serré sur l'accueil ---- */
+.home-serre{display:flex;align-items:center;gap:11px;background:var(--blanc);border-radius:18px;
+  padding:10px 14px;margin-top:9px;box-shadow:var(--sh-soft);cursor:pointer;
+  animation:home-in .55s cubic-bezier(.22,1,.36,1) .42s both;user-select:none;-webkit-user-select:none}
+.hs-lbl{flex:1;font-size:13.5px;font-weight:700;color:var(--encre);line-height:1.2}
+.hs-lbl small{display:block;font-weight:500;font-size:11px;color:var(--rose);margin-top:2px}
+.hs-sw{width:46px;height:28px;border-radius:14px;background:#E7D8D1;position:relative;flex:0 0 auto;transition:background .25s}
+.hs-sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#FFFDFB;
+  box-shadow:0 2px 6px rgba(74,43,56,.25);transition:left .25s cubic-bezier(.4,0,.2,1)}
+.home-serre.on .hs-sw{background:var(--olive)}
+.home-serre.on .hs-sw i{left:21px}
+/* ---- animation de match ---- */
+.match-pop{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;background:radial-gradient(85% 60% at 50% 46%,rgba(56,32,42,.66),rgba(56,32,42,.18) 78%,transparent);backdrop-filter:blur(2px);
+  animation:mp-bg .35s ease both}
+.match-pop.out{animation:mp-out .45s ease both}
+@keyframes mp-bg{from{opacity:0}to{opacity:1}}
+@keyframes mp-out{from{opacity:1}to{opacity:0}}
+.mp-in{text-align:center;animation:mp-pop .5s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes mp-pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.mp-cards{position:relative;height:86px;margin-bottom:10px}
+.mpc{position:absolute;top:6px;left:50%;width:46px;height:66px;border-radius:9px;box-shadow:0 10px 22px rgba(56,32,42,.4)}
+.mpc.a{background:var(--prune);animation:mc-a .55s cubic-bezier(.34,1.56,.64,1) both}
+.mpc.b{background:var(--abricot);animation:mc-b .55s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes mc-a{from{transform:translateX(-90px) rotate(-30deg)}to{transform:translateX(-44px) rotate(-12deg)}}
+@keyframes mc-b{from{transform:translateX(44px) rotate(30deg)}to{transform:translateX(-2px) rotate(12deg)}}
+.mp-heart{position:absolute;left:50%;top:26px;transform:translateX(-50%);font-size:26px;color:#FCEFE6;
+  text-shadow:0 4px 12px rgba(56,32,42,.5);animation:mp-heart .6s cubic-bezier(.34,1.56,.64,1) .25s both;z-index:2}
+@keyframes mp-heart{from{transform:translateX(-50%) scale(0)}60%{transform:translateX(-50%) scale(1.35)}to{transform:translateX(-50%) scale(1)}}
+.mp-in b{display:block;font-family:var(--font-display);font-weight:900;font-size:30px;color:#FCEFE6;
+  text-shadow:0 3px 14px rgba(56,32,42,.55)}
+.mp-in small{display:block;margin-top:5px;font-size:13px;font-weight:600;color:#F6E4DC;
+  text-shadow:0 2px 8px rgba(56,32,42,.5);max-width:250px}
+@media (prefers-reduced-motion:reduce){.mpc.a,.mpc.b,.mp-heart,.mp-in{animation-duration:.01s}}
 .stamp{
   position:absolute;top:22px;font-family:var(--font-display);font-weight:900;font-size:26px;
   padding:5px 15px;border:3.5px solid;border-radius:12px;transform:rotate(-13deg);opacity:0;
@@ -853,7 +903,10 @@ function updateCoursesBadge() {
 function renderPioche() {
   const page = $("#pioche-page");
   const mode = S.pendingMode || store.get("bp_mode", "ensemble");
-  if (!S.session && mode === "remote" && remoteOn()) { renderRemotePioche(page); return; }
+  if (!S.session && mode === "remote" && remoteOn()) {
+    const rs = S.rsession;
+    if ((S.rswipe && rs && S.rswipe.sessionId === rs.id) || (rs && !rs.validated)) { renderRemotePioche(page); return; }
+  }
   if (!S.session) { renderPiocheSetup(page); return; }
   if (S.session.finished) { renderRecap(page); return; }
   if (S.session.mode === "duo") {
@@ -913,20 +966,34 @@ function renderPiocheSetup(page) {
   let mode = S.pendingMode || store.get("bp_mode", "ensemble");
   if (mode === "duo") { mode = "ensemble"; S.pendingMode = "ensemble"; store.set("bp_mode", "ensemble"); }
   const names = store.get("bp_names", { p1: "Mathieu", p2: "Ma moitié" });
+  const TXT = {
+    ensemble: {
+      q: "On met vos envies<br>en commun, et on <em>tranche</em>.",
+      foot: S.week
+        ? "Une nouvelle sélection remplacera le menu actuel une fois validée."
+        : "Une quinzaine de minutes à deux, et la semaine est réglée — menu, courses et batchs compris."
+    },
+    remote: {
+      q: "Chacun ses envies,<br>de son côté. On <em>recoupe</em>.",
+      foot: "Vous swipez quand vous voulez, chacun de votre côté. Les plats qui vous plaisent à tous les deux entrent au menu."
+    }
+  };
   page.innerHTML = `
   <div class="pioche-setup home">
     <div class="home-date">${todayLine()}</div>
-    <h1 class="home-q">On met vos envies<br>en commun, et on <em>tranche</em>.</h1>
+    <h1 class="home-q" id="home-q">${TXT[mode].q}</h1>
     ${tilesHTML(t)}
     ${midHTML(t)}
     <div class="home-mode">
-      <button data-mode="ensemble" class="on">${avatarsHTML(true)}Sur le même canapé</button>
-      <button data-mode="remote">${avatarsHTML(false)}Chacun son téléphone</button>
+      <button data-mode="ensemble" class="${mode === "ensemble" ? "on" : ""}">${avatarsHTML(true)}Sur le même canapé</button>
+      <button data-mode="remote" class="${mode === "remote" ? "on" : ""}">${avatarsHTML(false)}Chacun son téléphone</button>
+    </div>
+    <div class="home-serre${budgetSerre() ? " on" : ""}" id="home-serre" role="switch" aria-checked="${budgetSerre()}">
+      <span class="hs-lbl">Budget serré<small>proposer d'abord ce qui coûte le moins</small></span>
+      <span class="hs-sw"><i></i></span>
     </div>
     <button class="btn btn-primary btn-block home-cta" id="start-pioche">C'est parti</button>
-    <div class="home-foot">${S.week
-      ? "Une nouvelle sélection remplacera le menu actuel une fois validée."
-      : "Une quinzaine de minutes à deux, et la semaine est réglée — menu, courses et batchs compris."}</div>
+    <div class="home-foot" id="home-foot">${TXT[mode].foot}</div>
   </div>`;
   S.sessionTargets = t;
   page.querySelectorAll(".stepper button").forEach(b => b.addEventListener("click", () => {
@@ -934,12 +1001,30 @@ function renderPiocheSetup(page) {
     $("#t-" + k).textContent = t[k];
     const tot = $("#home-total-v"); if (tot) tot.textContent = t.diner + t.petitdej + t.collation;
   }));
+  const swap = (el, html) => { el.classList.remove("swapping"); void el.offsetWidth; el.innerHTML = html; el.classList.add("swapping"); };
   page.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => {
-    if (b.dataset.mode === "remote" && !remoteOn()) { toast("Configure d'abord le foyer dans ⚙️ Réglages"); openSettings(); return; }
-    S.pendingMode = b.dataset.mode; store.set("bp_mode", b.dataset.mode); renderPioche();
+    if (b.dataset.mode === mode) return;
+    mode = b.dataset.mode;
+    S.pendingMode = mode; store.set("bp_mode", mode);
+    page.querySelectorAll("[data-mode]").forEach(x => x.classList.toggle("on", x.dataset.mode === mode));
+    swap($("#home-q"), TXT[mode].q);
+    swap($("#home-foot"), TXT[mode].foot);
   }));
-  $("#start-pioche").addEventListener("click", () => {
+  $("#home-serre").addEventListener("click", () => {
+    const v = !budgetSerre(); store.set("bp_serre", v);
+    const el = $("#home-serre"); el.classList.toggle("on", v); el.setAttribute("aria-checked", v);
+  });
+  $("#start-pioche").addEventListener("click", async () => {
     if ((t.diner + t.petitdej + t.collation) <= 0) { toast("Choisissez au moins une recette"); return; }
+    if (mode === "remote") {
+      if (!remoteOn()) { toast("Configure d'abord le foyer dans ⚙️ Réglages"); openSettings(); return; }
+      if (S.rsession && !S.rsession.validated) { render(); return; }
+      const excl = Array.from(recentIds());
+      const ns = { id: Date.now(), targets: { ...t }, excl, votes: { p1: { _: 0 }, p2: { _: 0 } }, done: { p1: { _: 0 }, p2: { _: 0 } }, validated: false, createdBy: RC.me };
+      try { await api.put("session", ns); S.rsession = ns; _lastRoom = ""; toast("Pioche lancée — à vos swipes"); render(); }
+      catch (e) { syncErr(e); }
+      return;
+    }
     startSession(t, "ensemble", null);
   });
 }
@@ -2122,46 +2207,36 @@ function remotePhaseState(ses, cat) {
 /* ---------- Écrans du mode À distance ---------- */
 function partnerName() { const o = other(RC.me); return (S.rnames && S.rnames[o] && S.rnames[o].nom) || "l'autre"; }
 function myName() { return (S.rnames && S.rnames[RC.me] && S.rnames[RC.me].nom) || "moi"; }
+function matchPop(ids) {
+  if (document.querySelector(".match-pop")) return;
+  const n = ids.length, r = byId[ids[0]];
+  const el = document.createElement("div");
+  el.className = "match-pop";
+  el.innerHTML = `<div class="mp-in">
+    <div class="mp-cards"><span class="mpc a"></span><span class="mpc b"></span><span class="mp-heart">♥</span></div>
+    <b>${n > 1 ? n + " matchs !" : "Match !"}</b>
+    <small>${esc(r ? r.nom : "")}${n > 1 ? " · +" + (n - 1) + " autre" + (n > 2 ? "s" : "") : ""}</small>
+  </div>`;
+  document.body.appendChild(el);
+  setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 500); }, 2400);
+}
 function renderRemotePioche(page) {
   const ses = S.rsession;
   if (S.rswipe && ses && S.rswipe.sessionId === ses.id) { renderRemoteDeck(page); return; }
-  if (!ses || ses.validated) {
-    const t = S.sessionTargets || { diner: 7, petitdej: 4, collation: 4 };
-    S.sessionTargets = t;
-    page.innerHTML = `
-    <div class="pioche-setup home">
-      <div class="home-date">${todayLine()}</div>
-      <h1 class="home-q">Chacun ses envies,<br>de son côté. On <em>recoupe</em>.</h1>
-      ${tilesHTML(t)}
-      ${midHTML(t)}
-      <div class="home-mode">
-        <button id="back-modes">${avatarsHTML(true)}Sur le même canapé</button>
-        <button class="on">${avatarsHTML(false)}Chacun son téléphone</button>
-      </div>
-      <button class="btn btn-primary btn-block home-cta" id="start-remote">C'est parti</button>
-      <div class="home-foot">${ses && ses.validated
-        ? "Le menu de la semaine est déjà validé — en relancer une le remplacera."
-        : "Vous swipez quand vous voulez, chacun de votre côté. Les plats qui vous plaisent à tous les deux entrent au menu."}</div>
-    </div>`;
-    page.querySelectorAll(".stepper button").forEach(b => b.addEventListener("click", () => {
-      const k = b.dataset.t; t[k] = Math.max(0, Math.min(7, t[k] + parseInt(b.dataset.d)));
-      $("#t-" + k).textContent = t[k];
-      const tot = $("#home-total-v"); if (tot) tot.textContent = t.diner + t.petitdej + t.collation;
-    }));
-    $("#start-remote").addEventListener("click", async () => {
-      if ((t.diner + t.petitdej + t.collation) <= 0) { toast("Choisissez au moins une recette"); return; }
-      const excl = Array.from(recentIds());
-      const ns = { id: Date.now(), targets: { ...t }, excl, votes: { p1: { _: 0 }, p2: { _: 0 } }, done: { p1: { _: 0 }, p2: { _: 0 } }, validated: false, createdBy: RC.me };
-      try { await api.put("session", ns); S.rsession = ns; _lastRoom = ""; toast("Pioche lancée — à vos swipes"); render(); }
-      catch (e) { syncErr(e); }
-    });
-    $("#back-modes").addEventListener("click", () => { S.pendingMode = "ensemble"; store.set("bp_mode", "ensemble"); render(); });
-    return;
-  }
+  if (!ses || ses.validated) { renderPiocheSetup(page); return; }
   // tableau de bord des 3 phases
   const states = {};
   let allDone = true;
   PHASES.forEach(ph => { states[ph.cat] = remotePhaseState(ses, ph.cat); if (!states[ph.cat].complete) allDone = false; });
+  // matchs frais → animation (une seule fois par match, mémorisé par session)
+  const matchedIds = [];
+  PHASES.forEach(ph => { const st = states[ph.cat]; st.liked.forEach(id => { if (st.chosenBy[id] === "match") matchedIds.push(id); }); });
+  const seen = store.get("bp_matchseen", null);
+  if (seen && seen.sid === ses.id) {
+    const fresh = matchedIds.filter(id => seen.ids.indexOf(id) < 0);
+    if (fresh.length) matchPop(fresh);
+  }
+  store.set("bp_matchseen", { sid: ses.id, ids: matchedIds });
   if (allDone) { renderRemoteRecap(page, states); return; }
   const rows = PHASES.map(ph => {
     const st = states[ph.cat];
